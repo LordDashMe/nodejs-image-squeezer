@@ -1,7 +1,7 @@
 import cli from 'child_process';
 import imageSize from 'image-size';
-import { OperatingSystemException } from '../src/Exception/OperatingSystemException';
-import { ImageSqueezerException } from '../src/Exception/ImageSqueezerException';
+import { OperatingSystemException } from './Exception/OperatingSystemException';
+import { ImageSqueezerException } from './Exception/ImageSqueezerException';
 
 export default class ImageSqueezer {
 
