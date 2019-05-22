@@ -52,17 +52,15 @@ export default class ImageSqueezer {
         return this.ffmpegBin;
     }
 
-    public setSourceFilePath(sourceFilePath: string)
-    {
+    public setSourceFilePath(sourceFilePath: string) {
         this.sourceFilePath = sourceFilePath;
     }
-    public setOutputFilePath(outputFilePath: string)
-    {
+
+    public setOutputFilePath(outputFilePath: string) {
         this.outputFilePath = outputFilePath;
     }
 
-    public compress()
-    {
+    public compress() {
         this.validateRequiredProperties();
 
         var imageDimensions = imageSize(this.sourceFilePath);
@@ -76,11 +74,12 @@ export default class ImageSqueezer {
 
         cli.execSync(cmd);
     }
-    private validateRequiredProperties()
-    {
+
+    private validateRequiredProperties() {
         if (! this.sourceFilePath) {
             throw ImageSqueezerException.emptySourceFilePath();
         }
+
         if (! this.outputFilePath) {
             throw ImageSqueezerException.emptyOutputFilePath();
         }
