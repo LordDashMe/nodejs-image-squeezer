@@ -1,35 +1,36 @@
 {
-    "name": "nodejs-image-squeezer",
-    "version": "1.0.2",
-    "description": "A simple PHP package for image compression powered by FFMPEG.",
-    "main": "dist/ImageSqueezer.js",
-    "types": "dist/ImageSqueezer.d.ts",
-    "scripts": {
-        "build-tsc": "./node_modules/.bin/tsc",
-        "test": "jest"
-    },
-    "keywords": [
-        "image",
-        "compression",
-        "lossy",
-        "ffmpeg"
-    ],
-    "author": "Joshua Clifford Reyes <reyesjoshuaclifford@gmail.com> (https://lorddashme.github.io/)",
-    "license": "MIT",
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/lorddashme/nodejs-image-squeezer.git"
-    },
-    "homepage": "https://github.com/lorddashme/nodejs-image-squeezer",
-    "devDependencies": {
-        "@babel/cli": "^7.4.4",
-        "@babel/core": "^7.4.5",
-        "@babel/preset-env": "^7.4.5",
-        "@babel/preset-typescript": "^7.3.3",
-        "jest": "^24.8.0",
-        "typescript": "^3.4.5"
-    },
-    "dependencies": {
-        "typescript": "^3.4.5"
-    }
+  "name": "nodejs-image-squeezer",
+  "version": "1.0.2",
+  "description": "A simple PHP package for image compression powered by FFMPEG.",
+  "main": "dist/ImageSqueezer.js",
+  "types": "dist/ImageSqueezer.d.ts",
+  "scripts": {
+    "build-tsc": "./node_modules/.bin/tsc",
+    "test": "jest"
+  },
+  "keywords": [
+    "image",
+    "compression",
+    "lossy",
+    "ffmpeg"
+  ],
+  "author": "Joshua Clifford Reyes <reyesjoshuaclifford@gmail.com> (https://lorddashme.github.io/)",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lorddashme/nodejs-image-squeezer.git"
+  },
+  "homepage": "https://github.com/lorddashme/nodejs-image-squeezer",
+  "devDependencies": {
+    "@babel/cli": "^7.4.4",
+    "@babel/core": "^7.4.5",
+    "@babel/preset-env": "^7.4.5",
+    "@babel/preset-typescript": "^7.3.3",
+    "jest": "^24.8.0",
+    "typescript": "^3.4.5"
+  },
+  "dependencies": {
+    "image-size": "^0.7.4",
+    "typescript": "^3.4.5"
+  }
 }
