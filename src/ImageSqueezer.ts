@@ -80,7 +80,7 @@ export default class ImageSqueezer {
 
         return (new Promise((resolve, reject): void => {
             cli.exec(cmd, (error): void => {
-                (error ? reject(true) : resolve(true));
+                (error ? reject(error) : resolve(true));
             });
         }));
     }
