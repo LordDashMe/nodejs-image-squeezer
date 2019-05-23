@@ -47,6 +47,31 @@ imageSqueezer.setOutputFilePath('/path/output-filename');
 imageSqueezer.compress();
 ```
 
+- Basic implementation of the package without superset libraries of JavaScript:
+
+```js
+
+// Require the main class of the NodeJS Image Squeezer.
+var ImageSqueezer = require('nodejs-image-squeezer');
+
+// Initialize the main class.
+var imageSqueezer = new ImageSqueezer();
+
+// Load the necessary requirements and validate
+// if the package fit for the current environment.
+imageSqueezer.load();
+
+// Provide the source file path of the desire image
+// that will be compress later on.
+imageSqueezer.setSourceFilePath('/path/source-filename');
+
+// Provide the output file path of the compressed image.
+imageSqueezer.setOutputFilePath('/path/output-filename');
+
+// Execute the image compression.
+imageSqueezer.compress();
+```
+
 ## License
 
 This package is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
