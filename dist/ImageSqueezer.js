@@ -58,7 +58,7 @@ class ImageSqueezer {
             this.outputFilePath;
         return (new Promise((resolve, reject) => {
             child_process_1.default.exec(cmd, (error) => {
-                (error ? reject(true) : resolve(true));
+                (error ? reject(error) : resolve(true));
             });
         }));
     }
