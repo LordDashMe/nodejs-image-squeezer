@@ -30,14 +30,14 @@ export default class ImageSqueezer {
         
         var selectedOperatingSystem = this.getOperatingSystem();
 
-        if (selectedOperatingSystem === ImageSqueezer.WINDOWS_OS) {
-            this.ffmpegBin = this.getCurrentDir() + '/../lib/ffmpeg-20190214-f1f66df-win64-static/bin/ffmpeg.exe';
-        } else if (selectedOperatingSystem === ImageSqueezer.LINUX_OS) {
-            this.ffmpegBin = this.getCurrentDir() + '/../lib/ffmpeg-4.1.1-amd64-static/ffmpeg';
-        } else if (selectedOperatingSystem === ImageSqueezer.UNIX_OS || selectedOperatingSystem === ImageSqueezer.MACOSX_OS) {
-            throw OperatingSystemException.isNotSupported(); // TODO: support in the next version.
-        } else {
-            throw OperatingSystemException.isNotSupported();
+        switch (selectedOperatingSystem) {
+            case ImageSqueezer.WINDOWS_OS:
+            case ImageSqueezer.LINUX_OS:
+                break;
+            case ImageSqueezer.UNIX_OS:
+            case ImageSqueezer.MACOSX_OS:
+            default:
+                throw OperatingSystemException.isNotSupported();
         }
     }
 
@@ -50,19 +50,9 @@ export default class ImageSqueezer {
         return process.platform;
     }
 
-    private getCurrentDir(): string {
-        
-        return __dirname;
-    }
-
     public setFFMpegBin(ffmpegBin: string): void {
 
         this.ffmpegBin = ffmpegBin;
-    }
-
-    public getFFMpegBin(): string {
-        
-        return this.ffmpegBin;
     }
 
     public setSourceFilePath(sourceFilePath: string): void {
