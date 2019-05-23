@@ -7,7 +7,7 @@ export class OperatingSystemException extends Error {
         this.name = 'OperatingSystemException';
     }
 
-    public static isNotSupported() {
+    public static isNotSupported(): OperatingSystemException {
         
         return new OperatingSystemException(
             'The current operating system is not supported. ' + 

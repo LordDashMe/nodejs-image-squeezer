@@ -26,10 +26,18 @@
     "@babel/core": "^7.4.5",
     "@babel/preset-env": "^7.4.5",
     "@babel/preset-typescript": "^7.3.3",
+    "@commitlint/cli": "^7.6.1",
+    "@commitlint/config-conventional": "^7.6.0",
     "@types/image-size": "^0.7.0",
     "@types/jest": "^24.0.13",
+    "@typescript-eslint/eslint-plugin": "^1.9.0",
+    "@typescript-eslint/parser": "^1.9.0",
+    "eslint": "^5.16.0",
+    "husky": "^2.3.0",
     "image-size": "^0.7.4",
     "jest": "^24.8.0",
+    "lint-staged": "^8.1.7",
+    "standard-version": "^6.0.1",
     "ts-jest": "^24.0.2",
     "typescript": "^3.4.5"
   },
@@ -38,5 +46,26 @@
     "@types/node": "^12.0.2",
     "image-size": "^0.7.4",
     "typescript": "^3.4.5"
+  },
+  "config": {
+    "commitizen": {
+      "path": "cz-conventional-changelog"
+    }
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
+  "lint-staged": {
+    "linters": {
+      "**/src/*.{ts,tsx}": [
+        "eslint"
+      ]
+    },
+    "ignore": [
+      "**/dist/*.min.js"
+    ]
   }
 }
