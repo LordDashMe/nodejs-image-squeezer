@@ -1,8 +1,8 @@
 export default class ImageSqueezer {
-    readonly WINDOWS_OS: string;
-    readonly LINUX_OS: string;
-    readonly UNIX_OS: string;
-    readonly MACOSX_OS: string;
+    static readonly WINDOWS_OS: string;
+    static readonly LINUX_OS: string;
+    static readonly UNIX_OS: string;
+    static readonly MACOSX_OS: string;
     private operatingSystem;
     private ffmpegBin;
     private sourceFilePath;
@@ -16,6 +16,6 @@ export default class ImageSqueezer {
     getFFMpegBin(): string;
     setSourceFilePath(sourceFilePath: string): void;
     setOutputFilePath(outputFilePath: string): void;
-    compress(): Promise<{}>;
+    compress(): Promise<boolean>;
     private validateRequiredProperties;
 }

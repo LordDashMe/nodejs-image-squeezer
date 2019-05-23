@@ -9,10 +9,6 @@ const ImageSqueezerException_1 = require("./Exception/ImageSqueezerException");
 const OperatingSystemException_1 = require("./Exception/OperatingSystemException");
 class ImageSqueezer {
     constructor() {
-        this.WINDOWS_OS = 'win32';
-        this.LINUX_OS = 'linux';
-        this.UNIX_OS = 'freebsd';
-        this.MACOSX_OS = 'darwin';
         this.operatingSystem = '';
         this.ffmpegBin = '';
         this.sourceFilePath = '';
@@ -26,13 +22,13 @@ class ImageSqueezer {
     }
     verifySupportedOperatingSystem() {
         var selectedOperatingSystem = this.getOperatingSystem();
-        if (selectedOperatingSystem === this.WINDOWS_OS) {
+        if (selectedOperatingSystem === ImageSqueezer.WINDOWS_OS) {
             this.ffmpegBin = this.getCurrentDir() + '/../lib/ffmpeg-20190214-f1f66df-win64-static/bin/ffmpeg.exe';
         }
-        else if (selectedOperatingSystem === this.LINUX_OS) {
+        else if (selectedOperatingSystem === ImageSqueezer.LINUX_OS) {
             this.ffmpegBin = this.getCurrentDir() + '/../lib/ffmpeg-4.1.1-amd64-static/ffmpeg';
         }
-        else if (selectedOperatingSystem === this.UNIX_OS || selectedOperatingSystem === this.MACOSX_OS) {
+        else if (selectedOperatingSystem === ImageSqueezer.UNIX_OS || selectedOperatingSystem === ImageSqueezer.MACOSX_OS) {
             throw OperatingSystemException_1.OperatingSystemException.isNotSupported(); // TODO: support in the next version.
         }
         else {
@@ -84,4 +80,8 @@ class ImageSqueezer {
         }
     }
 }
+ImageSqueezer.WINDOWS_OS = 'win32';
+ImageSqueezer.LINUX_OS = 'linux';
+ImageSqueezer.UNIX_OS = 'freebsd';
+ImageSqueezer.MACOSX_OS = 'darwin';
 exports.default = ImageSqueezer;

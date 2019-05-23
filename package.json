@@ -6,6 +6,7 @@
   "types": "dist/ImageSqueezer.d.ts",
   "scripts": {
     "test": "jest",
+    "pre-build-lint": "lint-staged",
     "build-tsc": "./node_modules/.bin/tsc",
     "build-release": "standard-version"
   },
