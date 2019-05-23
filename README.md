@@ -8,7 +8,7 @@ A simple NodeJS package for image compression powered by FFMPEG.
 
 - Node.js 8.0.* up to latest.
 
-- Operating System: Windows, Linux or Mac OS X.
+- Operating System: Windows, Linux.
 
 - FFMPEG Binaries or Executable File:
 
@@ -16,9 +16,9 @@ A simple NodeJS package for image compression powered by FFMPEG.
 
   - For **Windows** you can download it via this link: [Windows FFMPEG Build](https://ffmpeg.zeranoe.com/builds/)
 
-  - **Note:** The **Mac OS** is currently not supported by this package as of the moment.
+  - While as of the moment, the **Mac OS** is currently not supported by this package.
 
-  - To check the FFMPEG latest build or release please refer to this link: [FFMPEG Main Download Site](https://ffmpeg.org/download.html)
+  - Further more to check the FFMPEG latest build or release please refer to this link: [FFMPEG Main Download Site](https://ffmpeg.org/download.html)
 
 ## Install
 
@@ -46,7 +46,7 @@ var imageSqueezer = new ImageSqueezer();
 // if the package fit for the current environment.
 imageSqueezer.load();
 
-// Override the default binaries
+// Set the path of binary file of ffmpeg.
 imageSqueezer.setFFMpegBin('/path/to/binary');
 
 // Provide the source file path of the desire image
@@ -60,7 +60,7 @@ imageSqueezer.setOutputFilePath('/path/output-filename');
 imageSqueezer.compress();
 ```
 
-- Basic implementation of the package without superset libraries of JavaScript (using a pure node.js syntax):
+- Basic implementation of the package without superset libraries of JavaScript (using a pure Node.js syntax):
 
 ```js
 
@@ -74,7 +74,7 @@ var imageSqueezer = new ImageSqueezer();
 // if the package fit for the current environment.
 imageSqueezer.load();
 
-// Override the default binaries
+// Set the path of binary file of ffmpeg.
 imageSqueezer.setFFMpegBin('/path/to/binary');
 
 // Provide the source file path of the desire image
