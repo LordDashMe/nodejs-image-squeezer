@@ -6,7 +6,7 @@ A simple NodeJS package for image compression powered by FFMPEG.
 
 ## Requirement(s)
 
-- Node 8.0.* up to latest.
+- node 8.0.* up to latest.
 
 - Operating System: Windows, Linux or Mac OS X.
 
@@ -22,7 +22,7 @@ npm install nodejs-image-squeezer --save --save-dev
 
 ## Usage
 
-- Below are the simple implementation of the package:
+- Below are the simple implementation of the package using **TypeScript**:
 
 ```ts
 
