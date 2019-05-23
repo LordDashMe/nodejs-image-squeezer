@@ -63,7 +63,7 @@ it('should reject when ffmpeg bin path is incorrect or unknown bin', async (): P
         imageSqueezer.setOutputFilePath(mockDirectory + 'compressed.jpg');
 
         await imageSqueezer.compress().catch((error): void => {
-            expect(error).toBe(true);
+            expect((error !== null)).toBe(true);
         });
 });
 
