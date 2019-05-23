@@ -47,7 +47,7 @@ imageSqueezer.setOutputFilePath('/path/output-filename');
 imageSqueezer.compress();
 ```
 
-- Basic implementation of the package without superset libraries of JavaScript:
+- Basic implementation of the package without superset libraries of JavaScript (using a pure nodejs syntax):
 
 ```js
 
