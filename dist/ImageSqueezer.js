@@ -22,17 +22,14 @@ class ImageSqueezer {
     }
     verifySupportedOperatingSystem() {
         var selectedOperatingSystem = this.getOperatingSystem();
-        if (selectedOperatingSystem === ImageSqueezer.WINDOWS_OS) {
-            this.ffmpegBin = this.getCurrentDir() + '/../lib/ffmpeg-20190214-f1f66df-win64-static/bin/ffmpeg.exe';
-        }
-        else if (selectedOperatingSystem === ImageSqueezer.LINUX_OS) {
-            this.ffmpegBin = this.getCurrentDir() + '/../lib/ffmpeg-4.1.1-amd64-static/ffmpeg';
-        }
-        else if (selectedOperatingSystem === ImageSqueezer.UNIX_OS || selectedOperatingSystem === ImageSqueezer.MACOSX_OS) {
-            throw OperatingSystemException_1.OperatingSystemException.isNotSupported(); // TODO: support in the next version.
-        }
-        else {
-            throw OperatingSystemException_1.OperatingSystemException.isNotSupported();
+        switch (selectedOperatingSystem) {
+            case ImageSqueezer.WINDOWS_OS:
+            case ImageSqueezer.LINUX_OS:
+                break;
+            case ImageSqueezer.UNIX_OS:
+            case ImageSqueezer.MACOSX_OS:
+            default:
+                throw OperatingSystemException_1.OperatingSystemException.isNotSupported();
         }
     }
     getOperatingSystem() {
@@ -41,14 +38,8 @@ class ImageSqueezer {
         }
         return process.platform;
     }
-    getCurrentDir() {
-        return __dirname;
-    }
     setFFMpegBin(ffmpegBin) {
         this.ffmpegBin = ffmpegBin;
-    }
-    getFFMpegBin() {
-        return this.ffmpegBin;
     }
     setSourceFilePath(sourceFilePath) {
         this.sourceFilePath = sourceFilePath;

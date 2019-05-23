@@ -11,9 +11,7 @@ export default class ImageSqueezer {
     load(): void;
     verifySupportedOperatingSystem(): void;
     private getOperatingSystem;
-    private getCurrentDir;
     setFFMpegBin(ffmpegBin: string): void;
-    getFFMpegBin(): string;
     setSourceFilePath(sourceFilePath: string): void;
     setOutputFilePath(outputFilePath: string): void;
     compress(): Promise<boolean>;
