@@ -6,7 +6,7 @@ A simple NodeJS package for image compression powered by FFMPEG.
 
 ## Requirement(s)
 
-- node 8.0.* up to latest.
+- Node.js 8.0.* up to latest.
 
 - Operating System: Windows, Linux or Mac OS X.
 
@@ -47,7 +47,7 @@ imageSqueezer.setOutputFilePath('/path/output-filename');
 imageSqueezer.compress();
 ```
 
-- Basic implementation of the package without superset libraries of JavaScript (using a pure nodejs syntax):
+- Basic implementation of the package without superset libraries of JavaScript (using a pure node.js syntax):
 
 ```js
 
