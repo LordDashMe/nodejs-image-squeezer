@@ -3,12 +3,12 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var child_process_1 = __importDefault(require("child_process"));
-var image_size_1 = __importDefault(require("image-size"));
-var OperatingSystemException_1 = require("./Exception/OperatingSystemException");
-var ImageSqueezerException_1 = require("./Exception/ImageSqueezerException");
-var ImageSqueezer = /** @class */ (function () {
-    function ImageSqueezer() {
+const child_process_1 = __importDefault(require("child_process"));
+const image_size_1 = __importDefault(require("image-size"));
+const ImageSqueezerException_1 = require("./Exception/ImageSqueezerException");
+const OperatingSystemException_1 = require("./Exception/OperatingSystemException");
+class ImageSqueezer {
+    constructor() {
         this.WINDOWS_OS = 'win32';
         this.LINUX_OS = 'linux';
         this.UNIX_OS = 'freebsd';
@@ -18,13 +18,13 @@ var ImageSqueezer = /** @class */ (function () {
         this.sourceFilePath = '';
         this.outputFilePath = '';
     }
-    ImageSqueezer.prototype.setOperatingSystem = function (operatingSystem) {
+    setOperatingSystem(operatingSystem) {
         this.operatingSystem = operatingSystem;
-    };
-    ImageSqueezer.prototype.load = function () {
+    }
+    load() {
         this.verifySupportedOperatingSystem();
-    };
-    ImageSqueezer.prototype.verifySupportedOperatingSystem = function () {
+    }
+    verifySupportedOperatingSystem() {
         var selectedOperatingSystem = this.getOperatingSystem();
         if (selectedOperatingSystem === this.WINDOWS_OS) {
             this.ffmpegBin = this.getCurrentDir() + '/../lib/ffmpeg-20190214-f1f66df-win64-static/bin/ffmpeg.exe';
@@ -38,26 +38,29 @@ var ImageSqueezer = /** @class */ (function () {
         else {
             throw OperatingSystemException_1.OperatingSystemException.isNotSupported();
         }
-    };
-    ImageSqueezer.prototype.getOperatingSystem = function () {
+    }
+    getOperatingSystem() {
         if (this.operatingSystem) {
             return this.operatingSystem;
         }
         return process.platform;
-    };
-    ImageSqueezer.prototype.getCurrentDir = function () {
+    }
+    getCurrentDir() {
         return __dirname;
-    };
-    ImageSqueezer.prototype.getFFMpegBin = function () {
+    }
+    setFFMpegBin(ffmpegBin) {
+        this.ffmpegBin = ffmpegBin;
+    }
+    getFFMpegBin() {
         return this.ffmpegBin;
-    };
-    ImageSqueezer.prototype.setSourceFilePath = function (sourceFilePath) {
+    }
+    setSourceFilePath(sourceFilePath) {
         this.sourceFilePath = sourceFilePath;
-    };
-    ImageSqueezer.prototype.setOutputFilePath = function (outputFilePath) {
+    }
+    setOutputFilePath(outputFilePath) {
         this.outputFilePath = outputFilePath;
-    };
-    ImageSqueezer.prototype.compress = function () {
+    }
+    compress() {
         this.validateRequiredProperties();
         var imageDimensions = image_size_1.default(this.sourceFilePath);
         var cmd = this.ffmpegBin + ' -y -i ' +
@@ -66,16 +69,19 @@ var ImageSqueezer = /** @class */ (function () {
             ':h=' + imageDimensions.height +
             ':force_original_aspect_ratio=decrease ' +
             this.outputFilePath;
-        child_process_1.default.execSync(cmd);
-    };
-    ImageSqueezer.prototype.validateRequiredProperties = function () {
+        return (new Promise((resolve, reject) => {
+            child_process_1.default.exec(cmd, (error) => {
+                (error ? reject(true) : resolve(true));
+            });
+        }));
+    }
+    validateRequiredProperties() {
         if (!this.sourceFilePath) {
             throw ImageSqueezerException_1.ImageSqueezerException.emptySourceFilePath();
         }
         if (!this.outputFilePath) {
             throw ImageSqueezerException_1.ImageSqueezerException.emptyOutputFilePath();
         }
-    };
-    return ImageSqueezer;
-}());
+    }
+}
 exports.default = ImageSqueezer;

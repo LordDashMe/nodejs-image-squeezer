@@ -1,7 +1,8 @@
 import cli from 'child_process';
 import imageSize from 'image-size';
-import { OperatingSystemException } from './Exception/OperatingSystemException';
+
 import { ImageSqueezerException } from './Exception/ImageSqueezerException';
+import { OperatingSystemException } from './Exception/OperatingSystemException';
 
 export default class ImageSqueezer {
 
@@ -16,14 +17,17 @@ export default class ImageSqueezer {
     private outputFilePath: string = '';
     
     public setOperatingSystem(operatingSystem: string) {
+        
         this.operatingSystem = operatingSystem;
     }
 
     public load() {
+        
         this.verifySupportedOperatingSystem();    
     }
 
     public verifySupportedOperatingSystem() {
+        
         var selectedOperatingSystem = this.getOperatingSystem();
 
         if (selectedOperatingSystem === this.WINDOWS_OS) {
@@ -38,29 +42,41 @@ export default class ImageSqueezer {
     }
 
     private getOperatingSystem() {
+        
         if (this.operatingSystem) {
             return this.operatingSystem;
         }
+
         return process.platform;
     }
 
     private getCurrentDir() {
+        
         return __dirname;
     }
 
+    public setFFMpegBin(ffmpegBin: string) {
+
+        this.ffmpegBin = ffmpegBin;
+    }
+
     public getFFMpegBin() {
+        
         return this.ffmpegBin;
     }
 
     public setSourceFilePath(sourceFilePath: string) {
+        
         this.sourceFilePath = sourceFilePath;
     }
 
     public setOutputFilePath(outputFilePath: string) {
+        
         this.outputFilePath = outputFilePath;
     }
 
     public compress() {
+        
         this.validateRequiredProperties();
 
         var imageDimensions = imageSize(this.sourceFilePath);
@@ -72,10 +88,15 @@ export default class ImageSqueezer {
                   ':force_original_aspect_ratio=decrease ' + 
                   this.outputFilePath;
 
-        cli.execSync(cmd);
+        return (new Promise((resolve, reject) => {
+            cli.exec(cmd, (error) => {
+                (error ? reject(true) : resolve(true));
+            });
+        }));
     }
 
     private validateRequiredProperties() {
+        
         if (! this.sourceFilePath) {
             throw ImageSqueezerException.emptySourceFilePath();
         }

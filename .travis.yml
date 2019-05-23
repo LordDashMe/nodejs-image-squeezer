@@ -3,7 +3,8 @@ language: node_js
 
 # Versions of NodeJS you want your project run with.
 node_js:
-  - "8.10"
+  - '10'
+  - '8'
 
 # Commands to be run before your environment runs.
 before_script:

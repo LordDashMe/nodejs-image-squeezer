@@ -1,5 +1,6 @@
 import fs from 'fs';
 import ImageSqueezer from '../../src/ImageSqueezer';
+
 import { OperatingSystemException } from '../../src/Exception/OperatingSystemException';
 import { ImageSqueezerException } from '../../src/Exception/ImageSqueezerException';
 
@@ -52,14 +53,29 @@ it('should throw exception image squeezer output file path empty', () => {
     }).toThrowError(ImageSqueezerException.emptyOutputFilePath());
 });
 
-it('should compress image', () => {
+it('should reject when ffmpeg bin path is incorrect or unknown bin', async () => {
     var mockDirectory = __dirname + '/../Mocks/images/';
 
     var imageSqueezer = new ImageSqueezer();
         imageSqueezer.load();
         imageSqueezer.setSourceFilePath(mockDirectory + 'uncompressed.jpg');
         imageSqueezer.setOutputFilePath(mockDirectory + 'compressed.jpg');
-        imageSqueezer.compress();  
+        imageSqueezer.setFFMpegBin('/home/00000');
 
-        expect(fs.existsSync(mockDirectory + 'compressed.jpg')).toBe(true);
+        await imageSqueezer.compress().catch((error) => {
+            expect(error).toBe(true);
+        });
+});
+
+it('should compress image', async () => {
+    var mockDirectory = __dirname + '/../Mocks/images/';
+
+    var imageSqueezer = new ImageSqueezer();
+        imageSqueezer.load();
+        imageSqueezer.setSourceFilePath(mockDirectory + 'uncompressed.jpg');
+        imageSqueezer.setOutputFilePath(mockDirectory + 'compressed.jpg');
+
+        await imageSqueezer.compress().then((resolve) => {
+            expect(fs.existsSync(mockDirectory + 'compressed.jpg')).toBe(true);
+        }); 
 });
