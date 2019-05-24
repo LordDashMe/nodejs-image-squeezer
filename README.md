@@ -8,7 +8,7 @@ A simple NodeJS package for image compression powered by FFMPEG.
 
 - Node.js 8.0.* up to latest.
 
-- Operating System: Windows, Linux or Mac OS X.
+- Operating System: Windows, Linux.
 
 - FFMPEG Binaries or Executable File:
 
@@ -16,7 +16,7 @@ A simple NodeJS package for image compression powered by FFMPEG.
 
   - For **Windows** you can download it via this link: [Windows FFMPEG Build](https://ffmpeg.zeranoe.com/builds/)
 
-  - **Note:** The **Mac OS** is currently not supported by this package as of the moment.
+  - While as of the moment, the **Mac OS** is currently not supported by this package.
 
   - To check the FFMPEG latest build or release please refer to this link: [FFMPEG Main Download Link](https://ffmpeg.org/download.html)
 
@@ -52,8 +52,8 @@ var imgSqueezer = new ImageSqueezer.FFMPEGComppresion();
 // if the package fit for the current environment.
 imgSqueezer.load();
 
-// Override the default binaries ffmpeg.
-imgSqueezer.setBin('/path/to/binary');
+// Set the default binaries file.
+imgSqueezer.setBin('/path/to/ffmpeg');
 
 // Provide the source file path of the desire image
 // that will be compress later on.
@@ -85,8 +85,8 @@ var imgSqueezer = new ImageSqueezer.FFMPEGComppresion();
 // if the package fit for the current environment.
 imgSqueezer.load();
 
-// Override the default binaries ffmpeg.
-imgSqueezer.setBin('/path/to/binary');
+// Set the default binaries file.
+imgSqueezer.setBin('/path/to/ffmpeg');
 
 // Provide the source file path of the desire image
 // that will be compress later on.
@@ -120,8 +120,8 @@ var imgSqueezer = new ImageSqueezer.ProgressiveJPEG();
 // if the package fit for the current environment.
 imgSqueezer.load();
 
-// Override the default binaries ffmpeg.
-imgSqueezer.setBin('/path/to/binary');
+// Set the default binaries file.
+imgSqueezer.setBin('/path/to/convert');
 
 // Provide the source file path of the desire image
 // that will be compress later on.
@@ -149,8 +149,8 @@ var imgSqueezer = new ImageSqueezer.ProgressiveJPEG();
 // if the package fit for the current environment.
 imgSqueezer.load();
 
-// Override the default binaries ffmpeg.
-imgSqueezer.setBin('/path/to/binary');
+// Set the default binaries file.
+imgSqueezer.setBin('/path/to/convert');
 
 // Provide the source file path of the desire image
 // that will be compress later on.
