@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.1.0](https://github.com/lorddashme/nodejs-image-squeezer/compare/v1.0.11...v1.1.0) (2019-05-24)
+
+
+### Bug Fixes
+
+* test case conflict issue on the last version. ([2bb0b01](https://github.com/lorddashme/nodejs-image-squeezer/commit/2bb0b01))
+
+
+### Features
+
+* added progressive jpg and refactored ffmpeg compression. ([907ca01](https://github.com/lorddashme/nodejs-image-squeezer/commit/907ca01))
+
+
+
 ### [1.0.11](https://github.com/lorddashme/nodejs-image-squeezer/compare/v1.0.10...v1.0.11) (2019-05-23)
 
 
