@@ -110,28 +110,14 @@ imgSqueezer.compress();
 
 ```ts
 
-// Import the main class of the NodeJS Image Squeezer.
 import ImageSqueezer from 'nodejs-image-squeezer';
 
-// Initialize the main class.
 var imgSqueezer = new ImageSqueezer.ProgressiveJPEG();
 
-// Load the necessary requirements and validate
-// if the package fit for the current environment.
 imgSqueezer.load();
-
-// Set the default binaries file.
 imgSqueezer.setBin('/path/to/convert');
-
-// Provide the source file path of the desire image
-// that will be compress later on.
 imgSqueezer.setSourceFilePath('/path/source-filename');
-
-// Provide the output file path of the compressed image.
 imgSqueezer.setOutputFilePath('/path/output-filename');
-
-// Execute the image compression.
-// return a promise.
 imgSqueezer.compress();
 ```
 
@@ -139,28 +125,14 @@ imgSqueezer.compress();
 
 ```js
 
-// Require the main class of the NodeJS Image Squeezer.
 var ImageSqueezer = require('nodejs-image-squeezer');
 
-// Initialize the main class.
 var imgSqueezer = new ImageSqueezer.ProgressiveJPEG();
 
-// Load the necessary requirements and validate
-// if the package fit for the current environment.
 imgSqueezer.load();
-
-// Set the default binaries file.
 imgSqueezer.setBin('/path/to/convert');
-
-// Provide the source file path of the desire image
-// that will be compress later on.
 imgSqueezer.setSourceFilePath('/path/source-filename');
-
-// Provide the output file path of the compressed image.
 imgSqueezer.setOutputFilePath('/path/output-filename');
-
-// Execute the image compression.
-// return a promise.
 imgSqueezer.compress();
 ```
 
