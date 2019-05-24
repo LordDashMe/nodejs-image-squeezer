@@ -7,5 +7,9 @@ module.exports = {
   },
   "cacheDirectory": "jest-cache/",
   "collectCoverage": true,
+  "collectCoverageFrom": [
+    "src/**/*.ts",
+    "!src/ImageSqueezer.ts"
+  ],
   "coverageDirectory": "jest-coverage"
 }
