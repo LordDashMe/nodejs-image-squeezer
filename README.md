@@ -46,7 +46,7 @@ npm install nodejs-image-squeezer --save
 import ImageSqueezer from 'nodejs-image-squeezer';
 
 // Initialize the main class.
-var imgSqueezer = new ImageSqueezer.FFMPEGComppresion();
+let imgSqueezer = new ImageSqueezer.FFMPEGComppresion();
 
 // Load the necessary requirements and validate
 // if the package fit for the current environment.
@@ -76,10 +76,10 @@ imgSqueezer.compress();
 ```js
 
 // Require the main class of the NodeJS Image Squeezer.
-var ImageSqueezer = require('nodejs-image-squeezer');
+let ImageSqueezer = require('nodejs-image-squeezer');
 
 // Initialize the main class.
-var imgSqueezer = new ImageSqueezer.FFMPEGComppresion();
+let imgSqueezer = new ImageSqueezer.FFMPEGComppresion();
 
 // Load the necessary requirements and validate
 // if the package fit for the current environment.
@@ -106,13 +106,15 @@ imgSqueezer.compress();
 
 ### JPEG Progressive
 
+- ***Note:*** This function will only work for JPEG format.
+
 - Below are the simple implementation using **TypeScript**:
 
 ```ts
 
 import ImageSqueezer from 'nodejs-image-squeezer';
 
-var imgSqueezer = new ImageSqueezer.ProgressiveJPEG();
+let imgSqueezer = new ImageSqueezer.ProgressiveJPEG();
 
 imgSqueezer.load();
 imgSqueezer.setBin('/path/to/convert');
@@ -125,9 +127,9 @@ imgSqueezer.compress();
 
 ```js
 
-var ImageSqueezer = require('nodejs-image-squeezer');
+let ImageSqueezer = require('nodejs-image-squeezer');
 
-var imgSqueezer = new ImageSqueezer.ProgressiveJPEG();
+let imgSqueezer = new ImageSqueezer.ProgressiveJPEG();
 
 imgSqueezer.load();
 imgSqueezer.setBin('/path/to/convert');
