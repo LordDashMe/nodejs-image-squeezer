@@ -16,7 +16,7 @@ A simple NodeJS package for image compression powered by FFMPEG.
 
   - For **Windows** you can download it via this link: [Windows FFMPEG Build](https://ffmpeg.zeranoe.com/builds/)
 
-  - While as of the moment, the **Mac OS** is currently not supported by this package.
+  - As of the moment **Mac OS** is currently not supported by this package.
 
   - To check the FFMPEG latest build or release please refer to this link: [FFMPEG Main Download Link](https://ffmpeg.org/download.html)
 
