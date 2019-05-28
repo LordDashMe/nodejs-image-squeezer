@@ -34,7 +34,7 @@ export declare class ImageSqueezerCommon {
     protected escapeShellArg(arg: string): string;
     protected executeChildProcess(): Promise<boolean>;
     /**
-     * This is a abstract or no-op class method.
+     * This is an abstract or no-op class method.
      * The subclass is expected to override this method.
      */
     protected command(): string;

@@ -116,6 +116,7 @@ import ImageSqueezer from 'nodejs-image-squeezer';
 
 let imgSqueezer = new ImageSqueezer.ProgressiveJPEG();
 
+imgSqueezer.load();
 imgSqueezer.setBin('/path/to/convert');
 imgSqueezer.setSourceFilePath('/path/source-filename');
 imgSqueezer.setOutputFilePath('/path/output-filename');
@@ -135,6 +136,7 @@ let ImageSqueezer = require('nodejs-image-squeezer');
 
 let imgSqueezer = new ImageSqueezer.ProgressiveJPEG();
 
+imgSqueezer.load();
 imgSqueezer.setBin('/path/to/convert');
 imgSqueezer.setSourceFilePath('/path/source-filename');
 imgSqueezer.setOutputFilePath('/path/output-filename');
