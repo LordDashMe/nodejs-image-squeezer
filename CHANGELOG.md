@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.2.0](https://github.com/lorddashme/nodejs-image-squeezer/compare/v1.1.4...v1.2.0) (2019-05-28)
+
+
+### Features
+
+* code revamp and optimization. ([99c1fcd](https://github.com/lorddashme/nodejs-image-squeezer/commit/99c1fcd))
+
+
+
 ### [1.1.4](https://github.com/lorddashme/nodejs-image-squeezer/compare/v1.1.3...v1.1.4) (2019-05-28)
 
 
