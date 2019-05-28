@@ -3,7 +3,6 @@ export class OperatingSystemException extends Error {
     constructor(message: string) {
 
         super(message);
-        
         this.name = 'OperatingSystemException';
     }
 
@@ -11,7 +10,7 @@ export class OperatingSystemException extends Error {
         
         return new OperatingSystemException(
             'The current operating system is not supported. ' + 
-            'Please use only WIN, Mac OS X or Linux to use this package.'
+            'Please use only WIN, Mac OS X, UNIX or Linux to use this package.'
         );   
     }
 }

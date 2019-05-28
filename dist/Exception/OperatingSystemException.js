@@ -7,7 +7,7 @@ class OperatingSystemException extends Error {
     }
     static isNotSupported() {
         return new OperatingSystemException('The current operating system is not supported. ' +
-            'Please use only WIN, Mac OS X or Linux to use this package.');
+            'Please use only WIN, Mac OS X, UNIX or Linux to use this package.');
     }
 }
 exports.OperatingSystemException = OperatingSystemException;

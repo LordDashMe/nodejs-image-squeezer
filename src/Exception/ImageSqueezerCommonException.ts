@@ -3,7 +3,6 @@ export class ImageSqueezerCommonException extends Error {
     constructor(message: string) {
 
         super(message);
-
         this.name = 'ImageSqueezerCommonException';
     }
 

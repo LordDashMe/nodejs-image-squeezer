@@ -1,15 +1,59 @@
 import path from 'path';
+import cli from 'child_process';
+
+import { OperatingSystemException } from './Exception/OperatingSystemException';
 import { ImageSqueezerCommonException } from './Exception/ImageSqueezerCommonException';
 
 export class ImageSqueezerCommon {
 
-    protected subClassType: string = '';
+    public static readonly WINDOWS_OS: string = 'win32';
+    public static readonly LINUX_OS: string = 'linux';
+    public static readonly UNIX_OS: string = 'freebsd';
+    public static readonly MACOSX_OS: string = 'darwin';
 
+    public static readonly DISABLED_CHILD_PROC_MSG: string = 'The Child Process Execution was disabled.';
+
+    protected operatingSystem: string = '';
+    protected subClassType: string = '';
     protected bin: string = '';
     protected sourceFilePath: string = '';
-    protected outputFilePath: string = ''; 
+    protected outputFilePath: string = '';
     protected isAllowedEmptyOutputFilePath: boolean = false;
+    protected commandStatement: string = '';
+    protected isExecuteChildProcess: boolean = true;
+
+    public load(): void {
+        
+        this.verifySupportedOperatingSystem();    
+    }
+
+    public verifySupportedOperatingSystem(): void {
+
+        switch (this.getOperatingSystem()) {
+            case ImageSqueezerCommon.WINDOWS_OS:
+            case ImageSqueezerCommon.LINUX_OS:
+            case ImageSqueezerCommon.UNIX_OS:
+                break;
+            case ImageSqueezerCommon.MACOSX_OS:
+            default:
+                throw OperatingSystemException.isNotSupported();
+        }
+    }
     
+    public setOperatingSystem(operatingSystem: string): void {
+
+        this.operatingSystem = operatingSystem;
+    }
+
+    protected getOperatingSystem(): string {
+
+        if (this.operatingSystem) {
+            return this.operatingSystem;
+        }
+
+        return process.platform;
+    }
+
     protected setSubClassType(subClassType: string): void {
 
         this.subClassType = subClassType;
@@ -35,6 +79,40 @@ export class ImageSqueezerCommon {
         this.isAllowedEmptyOutputFilePath = true;
     }
 
+    protected setCommandStatement(commandStatement: string): void {
+
+        this.commandStatement = commandStatement;
+    }
+
+    public getCommandStatement(): string {
+        
+        return this.commandStatement;
+    }
+
+    public disableChildProcessExecution(): void {
+
+        this.isExecuteChildProcess = false;
+    }
+
+    public build(): void {
+        
+        this.transferSouceFilePathToOutputFilePath();
+        this.validateRequiredProperties();
+        this.setCommandStatement(this.command());
+    }
+
+    public compress(): Promise<boolean> {
+
+        return this.executeChildProcess();
+    }
+
+    protected transferSouceFilePathToOutputFilePath(): void {
+        
+        if (this.isAllowedEmptyOutputFilePath) {
+            this.outputFilePath = this.sourceFilePath;
+        }
+    }
+
     protected validateRequiredProperties(): void {
         
         if (! this.sourceFilePath) {
@@ -43,13 +121,6 @@ export class ImageSqueezerCommon {
 
         if (! this.outputFilePath) {
             throw ImageSqueezerCommonException.emptyOutputFilePath();
-        }
-    }
-
-    protected transferSouceFilePathToOutputFilePath(): void {
-        
-        if (this.isAllowedEmptyOutputFilePath) {
-            this.outputFilePath = this.sourceFilePath;
         }
     }
 
@@ -72,12 +143,50 @@ export class ImageSqueezerCommon {
             this.outputFilePath.replace(filename, newFilename)
         );
 
-        return newBasename + ' && mv ' + 
-               newBasename + ' ' + this.escapeShellArg(this.outputFilePath);
+        return newBasename + this.renameCommandWithCompatibilityChecking(newBasename);       
+    }
+
+    private renameCommandWithCompatibilityChecking(newBasename: string): string {
+        
+        let cmd = '';
+
+        switch (this.getOperatingSystem()) {
+            case ImageSqueezerCommon.WINDOWS_OS:
+                cmd = ' && move -y ' + newBasename + ' ' + this.escapeShellArg(this.outputFilePath);
+                break;
+            case ImageSqueezerCommon.LINUX_OS:
+            case ImageSqueezerCommon.UNIX_OS:
+                cmd = ' && mv ' + newBasename + ' ' + this.escapeShellArg(this.outputFilePath);
+                break;
+        }
+
+        return cmd;
     }
 
     protected escapeShellArg(arg: string): string {
         
         return `'${arg.replace(/'/g, `'\\''`)}'`;
+    }
+
+    protected executeChildProcess(): Promise<boolean> {
+        
+        if (! this.isExecuteChildProcess) {
+            return Promise.reject(ImageSqueezerCommon.DISABLED_CHILD_PROC_MSG);
+        }
+
+        return new Promise((resolve, reject): void => {
+            cli.exec(this.commandStatement, (error): void => {
+                (error ? reject(error) : resolve(true));
+            });
+        });
+    }
+
+    /**
+     * This is a abstract or no-op class method. 
+     * The subclass is expected to override this method.
+     */
+    protected command(): string {
+
+        return '';
     }
 }
