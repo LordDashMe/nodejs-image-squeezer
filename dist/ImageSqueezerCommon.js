@@ -14,8 +14,8 @@ class ImageSqueezerCommon {
         this.bin = '';
         this.sourceFilePath = '';
         this.outputFilePath = '';
-        this.isAllowedEmptyOutputFilePath = false;
         this.commandStatement = '';
+        this.isAllowedEmptyOutputFilePath = false;
         this.isExecuteChildProcess = true;
     }
     load() {
@@ -97,7 +97,7 @@ class ImageSqueezerCommon {
     generateTemporaryOutputFilePath() {
         let filename = path_1.default.basename(this.outputFilePath);
         let splittedFilename = filename.split('.');
-        let newFilename = splittedFilename[0] + '-compressed-' + this.subClassType + '.' + splittedFilename[1];
+        let newFilename = splittedFilename[0] + '-tmp-' + this.subClassType + '.' + splittedFilename[1];
         let newBasename = this.escapeShellArg(this.outputFilePath.replace(filename, newFilename));
         return newBasename + this.renameCommandWithCompatibilityChecking(newBasename);
     }

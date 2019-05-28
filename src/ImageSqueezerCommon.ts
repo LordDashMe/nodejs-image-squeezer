@@ -18,8 +18,9 @@ export class ImageSqueezerCommon {
     protected bin: string = '';
     protected sourceFilePath: string = '';
     protected outputFilePath: string = '';
-    protected isAllowedEmptyOutputFilePath: boolean = false;
     protected commandStatement: string = '';
+    
+    protected isAllowedEmptyOutputFilePath: boolean = false;
     protected isExecuteChildProcess: boolean = true;
 
     public load(): void {
@@ -138,7 +139,7 @@ export class ImageSqueezerCommon {
         let filename = path.basename(this.outputFilePath);
         let splittedFilename = filename.split('.');
         
-        let newFilename = splittedFilename[0] + '-compressed-' + this.subClassType + '.' + splittedFilename[1];
+        let newFilename = splittedFilename[0] + '-tmp-' + this.subClassType + '.' + splittedFilename[1];
         let newBasename = this.escapeShellArg(
             this.outputFilePath.replace(filename, newFilename)
         );

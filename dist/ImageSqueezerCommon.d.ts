@@ -9,8 +9,8 @@ export declare class ImageSqueezerCommon {
     protected bin: string;
     protected sourceFilePath: string;
     protected outputFilePath: string;
-    protected isAllowedEmptyOutputFilePath: boolean;
     protected commandStatement: string;
+    protected isAllowedEmptyOutputFilePath: boolean;
     protected isExecuteChildProcess: boolean;
     load(): void;
     verifySupportedOperatingSystem(): void;
