@@ -1,4 +1,3 @@
-import path from 'path';
 import cli from 'child_process';
 import imageSize from 'image-size';
 
@@ -13,7 +12,12 @@ export default class FFMPEGCompression extends ImageSqueezerCommon {
     public static readonly MACOSX_OS: string = 'darwin'
     
     private operatingSystem: string = '';
-    private isAllowedEmptyOutputFilePath: boolean = false;
+
+    public constructor() {
+
+        super();
+        this.setSubClassType('ffmpeg-compression');
+    }
     
     public setOperatingSystem(operatingSystem: string): void {
 
@@ -49,11 +53,6 @@ export default class FFMPEGCompression extends ImageSqueezerCommon {
         return process.platform;
     }
 
-    public allowEmptyOutputFilePath(): void {
-        
-        this.isAllowedEmptyOutputFilePath = true;
-    }
-
     public compress(): Promise<boolean> {
         
         this.transferSouceFilePathToOutputFilePath();
@@ -74,40 +73,5 @@ export default class FFMPEGCompression extends ImageSqueezerCommon {
                 (error ? reject(error) : resolve(true));
             });
         }));
-    }
-
-    private transferSouceFilePathToOutputFilePath(): void {
-        
-        if (this.isAllowedEmptyOutputFilePath) {
-            this.outputFilePath = this.sourceFilePath;
-        }
-    }
-
-    private handleOutputFilePath(): string {
-
-        if (this.isAllowedEmptyOutputFilePath) {
-            return this.generateTemporaryOutputFilePath();
-        } else {
-            return this.escapeShellArg(this.outputFilePath);
-        }
-    }
-
-    private generateTemporaryOutputFilePath(): string {
-
-        let filename = path.basename(this.outputFilePath);
-        let splittedFilename = filename.split('.');
-        
-        let newFilename = splittedFilename[0] + '-compressed.' + splittedFilename[1];
-        let newBasename = this.escapeShellArg(
-            this.outputFilePath.replace(filename, newFilename)
-        );
-
-        return newBasename + ' && mv ' + 
-               newBasename + ' ' + this.escapeShellArg(this.outputFilePath);
-    }
-
-    private escapeShellArg(arg: string): string {
-        
-        return `'${arg.replace(/'/g, `'\\''`)}'`;
     }
 }

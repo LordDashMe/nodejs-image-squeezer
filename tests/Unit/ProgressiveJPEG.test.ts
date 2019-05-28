@@ -27,6 +27,19 @@ it('should throw exception image squeezer output file path empty', (): void => {
     }).toThrowError(ImageSqueezerCommonException.emptyOutputFilePath());
 });
 
+it('should allow empty output file path and used the current source path', async (): Promise<void> => {
+    
+    let mockDirectory = __dirname + '/../Mocks/images/';
+
+    let progressiveJPEG = new ProgressiveJPEG();
+        progressiveJPEG.setSourceFilePath(mockDirectory + 'uncompressed-replace.jpg');
+        progressiveJPEG.allowEmptyOutputFilePath();
+
+        await progressiveJPEG.compress().then((resolve): void => {
+            expect(fs.existsSync(mockDirectory + 'uncompressed-replace.jpg')).toBe(true);
+        }); 
+});
+
 it('should reject when the source file path is invalid or not found', async (): Promise<void> => {
     
     let mockDirectory = __dirname + '/../Mocks/images/';
@@ -45,10 +58,10 @@ it('should compress image', async (): Promise<void> => {
     let mockDirectory = __dirname + '/../Mocks/images/';
 
     let progressiveJPEG = new ProgressiveJPEG();
-        progressiveJPEG.setSourceFilePath(mockDirectory + 'compressed-imgck.jpg');
-        progressiveJPEG.setOutputFilePath(mockDirectory + 'compressed-imgck-prog.jpg');
-        
-        await progressiveJPEG.compress().then((resolve): void => {
-            expect(fs.existsSync(mockDirectory + 'compressed-imgck-prog.jpg')).toBe(true);
-        }); 
+    progressiveJPEG.setSourceFilePath(mockDirectory + 'compressed-imgck.jpg');
+    progressiveJPEG.setOutputFilePath(mockDirectory + 'compressed-imgck-prog.jpg');
+    
+    await progressiveJPEG.compress().then((resolve): void => {
+        expect(fs.existsSync(mockDirectory + 'compressed-imgck-prog.jpg')).toBe(true);
+    }); 
 });

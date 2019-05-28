@@ -8,13 +8,15 @@ const ImageSqueezerCommon_1 = require("./ImageSqueezerCommon");
 class ProgressiveJPEG extends ImageSqueezerCommon_1.ImageSqueezerCommon {
     constructor() {
         super();
+        this.setSubClassType('progessive-jpeg');
         this.setBin('convert');
     }
     compress() {
+        this.transferSouceFilePathToOutputFilePath();
         this.validateRequiredProperties();
         let cmd = this.bin + ' ' +
-            this.sourceFilePath + ' -interlace plane ' +
-            this.outputFilePath;
+            this.sourceFilePath + ' -interlace plane ';
+        cmd += this.handleOutputFilePath();
         return new Promise((resolve, reject) => {
             child_process_1.default.exec(cmd, (error) => {
                 (error ? reject(error) : resolve(true));

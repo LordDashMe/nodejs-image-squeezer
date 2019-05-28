@@ -3,16 +3,15 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const path_1 = __importDefault(require("path"));
 const child_process_1 = __importDefault(require("child_process"));
 const image_size_1 = __importDefault(require("image-size"));
 const ImageSqueezerCommon_1 = require("./ImageSqueezerCommon");
 const OperatingSystemException_1 = require("./Exception/OperatingSystemException");
 class FFMPEGCompression extends ImageSqueezerCommon_1.ImageSqueezerCommon {
     constructor() {
-        super(...arguments);
+        super();
         this.operatingSystem = '';
-        this.isAllowedEmptyOutputFilePath = false;
+        this.setSubClassType('ffmpeg-compression');
     }
     setOperatingSystem(operatingSystem) {
         this.operatingSystem = operatingSystem;
@@ -38,9 +37,6 @@ class FFMPEGCompression extends ImageSqueezerCommon_1.ImageSqueezerCommon {
         }
         return process.platform;
     }
-    allowEmptyOutputFilePath() {
-        this.isAllowedEmptyOutputFilePath = true;
-    }
     compress() {
         this.transferSouceFilePathToOutputFilePath();
         this.validateRequiredProperties();
@@ -56,30 +52,6 @@ class FFMPEGCompression extends ImageSqueezerCommon_1.ImageSqueezerCommon {
                 (error ? reject(error) : resolve(true));
             });
         }));
-    }
-    transferSouceFilePathToOutputFilePath() {
-        if (this.isAllowedEmptyOutputFilePath) {
-            this.outputFilePath = this.sourceFilePath;
-        }
-    }
-    handleOutputFilePath() {
-        if (this.isAllowedEmptyOutputFilePath) {
-            return this.generateTemporaryOutputFilePath();
-        }
-        else {
-            return this.escapeShellArg(this.outputFilePath);
-        }
-    }
-    generateTemporaryOutputFilePath() {
-        let filename = path_1.default.basename(this.outputFilePath);
-        let splittedFilename = filename.split('.');
-        let newFilename = splittedFilename[0] + '-compressed.' + splittedFilename[1];
-        let newBasename = this.escapeShellArg(this.outputFilePath.replace(filename, newFilename));
-        return newBasename + ' && mv ' +
-            newBasename + ' ' + this.escapeShellArg(this.outputFilePath);
-    }
-    escapeShellArg(arg) {
-        return `'${arg.replace(/'/g, `'\\''`)}'`;
     }
 }
 FFMPEGCompression.WINDOWS_OS = 'win32';
