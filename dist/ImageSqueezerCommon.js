@@ -1,4 +1,12 @@
 "use strict";
+/*
+ * This file is part of the Image Squeezer.
+ *
+ * (c) Joshua Clifford Reyes <reyesjoshuaclifford@gmail.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
@@ -7,6 +15,11 @@ const path_1 = __importDefault(require("path"));
 const child_process_1 = __importDefault(require("child_process"));
 const OperatingSystemException_1 = require("./Exception/OperatingSystemException");
 const ImageSqueezerCommonException_1 = require("./Exception/ImageSqueezerCommonException");
+/**
+ * Image Squeezer Common Class.
+ *
+ * @author Joshua Clifford Reyes <reyesjoshuaclifford@gmail.com>
+ */
 class ImageSqueezerCommon {
     constructor() {
         this.operatingSystem = '';

@@ -1,3 +1,8 @@
+/**
+ * Image Squeezer Common Class.
+ *
+ * @author Joshua Clifford Reyes <reyesjoshuaclifford@gmail.com>
+ */
 export declare class ImageSqueezerCommon {
     static readonly WINDOWS_OS: string;
     static readonly LINUX_OS: string;
