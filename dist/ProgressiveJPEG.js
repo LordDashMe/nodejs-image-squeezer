@@ -22,7 +22,7 @@ class ProgressiveJPEG extends ImageSqueezerCommon_1.ImageSqueezerCommon {
     }
     command() {
         return this.bin + ' ' +
-            this.sourceFilePath + ' -interlace plane ' +
+            this.escapeShellArg(this.sourceFilePath) + ' -interlace plane ' +
             this.handleOutputFilePath();
     }
 }
