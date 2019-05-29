@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.2.5](https://github.com/lorddashme/nodejs-image-squeezer/compare/v1.2.4...v1.2.5) (2019-05-29)
+
+
+### Bug Fixes
+
+* added escape shell arg in the source path of progressive jpeg class. ([ab0da30](https://github.com/lorddashme/nodejs-image-squeezer/commit/ab0da30))
+
+
+
 ### [1.2.4](https://github.com/lorddashme/nodejs-image-squeezer/compare/v1.2.3...v1.2.4) (2019-05-29)
 
 
