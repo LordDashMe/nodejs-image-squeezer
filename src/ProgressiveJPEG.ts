@@ -25,10 +25,8 @@ export class ProgressiveJPEG extends ImageSqueezerCommon {
 
     protected command(): string {
         
-        let cmd = this.bin + ' ' + 
-                  this.sourceFilePath + ' -interlace plane ' +
-                  this.handleOutputFilePath();
-
-        return cmd;
+        return this.bin + ' ' + 
+               this.sourceFilePath + ' -interlace plane ' +
+               this.handleOutputFilePath();
     }
 }

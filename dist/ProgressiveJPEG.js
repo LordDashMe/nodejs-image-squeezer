@@ -21,10 +21,9 @@ class ProgressiveJPEG extends ImageSqueezerCommon_1.ImageSqueezerCommon {
         this.setBin('convert');
     }
     command() {
-        let cmd = this.bin + ' ' +
+        return this.bin + ' ' +
             this.sourceFilePath + ' -interlace plane ' +
             this.handleOutputFilePath();
-        return cmd;
     }
 }
 exports.ProgressiveJPEG = ProgressiveJPEG;
