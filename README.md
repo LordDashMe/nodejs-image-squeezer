@@ -20,7 +20,7 @@ A simple NodeJS package for image compression powered by FFMPEG.
 
   - To check the FFMPEG latest build or release please refer to this link: [FFMPEG Main Download Link](https://ffmpeg.org/download.html)
 
-- Other Features:
+- Other Feature(s):
 
   - ImageMagick:
 
