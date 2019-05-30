@@ -11,7 +11,7 @@ it('should load the main class', (): void => {
     expect(new FileFormatResolver({})).toBeInstanceOf(FileFormatResolver);
 });
 
-it('should validate the allowed file format', (): void => {
+it('should throw exception when the file content mime type is not allowed or supported', (): void => {
 
     let imageMockDirectory = getMockDiretory('images/');
 
@@ -27,7 +27,7 @@ it('should validate the allowed file format', (): void => {
     expect(() => { fileFormatResolver.validate(); }).toThrowError(FileFormatException.extensionIsNotSupported());
 });
 
-it('should validate if the file name extension is not equal to the actual file content mime type', (): void => {
+it('should throw exception when the file name extension is not equal to the actual file content mime type', (): void => {
 
     let imageMockDirectory = getMockDiretory('images/');
 
