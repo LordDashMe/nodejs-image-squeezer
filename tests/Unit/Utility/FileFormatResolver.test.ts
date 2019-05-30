@@ -27,7 +27,7 @@ it('should validate the allowed file format', (): void => {
     expect(() => { fileFormatResolver.validate(); }).toThrowError(FileFormatException.extensionIsNotSupported());
 });
 
-it('should validate the allowed file format', (): void => {
+it('should validate if the file name extension is not equal to the actual file content mime type', (): void => {
 
     let imageMockDirectory = getMockDiretory('images/');
 

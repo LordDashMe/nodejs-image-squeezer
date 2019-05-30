@@ -67,7 +67,8 @@ imgSqueezer.setOutputFilePath('/path/output-filename');
 imgSqueezer.allowEmptyOutputFilePath();
 
 // Execute the image compression.
-// return a promise.
+// Please take note this is an async method.
+// return a Promise<boolean>.
 imgSqueezer.compress();
 ```
 
@@ -100,7 +101,8 @@ imgSqueezer.setOutputFilePath('/path/output-filename');
 imgSqueezer.allowEmptyOutputFilePath();
 
 // Execute the image compression.
-// return a promise.
+// Please take note this is an async method.
+// return a Promise<boolean>.
 imgSqueezer.compress();
 ```
 
@@ -125,6 +127,9 @@ imgSqueezer.setOutputFilePath('/path/output-filename');
 // and will use the source file path as the output.
 imgSqueezer.allowEmptyOutputFilePath();
 
+// Execute the jpeg progressive optimization.
+// Please take note this is an async method.
+// return a Promise<boolean>.
 imgSqueezer.compress();
 ```
 
@@ -145,6 +150,9 @@ imgSqueezer.setOutputFilePath('/path/output-filename');
 // and will use the source file path as the output.
 imgSqueezer.allowEmptyOutputFilePath();
 
+// Execute the jpeg progressive optimization.
+// Please take note this is an async method.
+// return a Promise<boolean>.
 imgSqueezer.compress();
 ```
 
