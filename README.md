@@ -20,9 +20,11 @@ A simple NodeJS package for image compression powered by FFMPEG.
 
   - To check the FFMPEG latest build or release please refer to this link: [FFMPEG Main Download Link](https://ffmpeg.org/download.html)
 
-- ImageMagick:
+- Other Features:
 
-  - To be able to use the "ProressiveJPEG" class this require the ImageMagick package. To get the latest version [ImageMagick Download Link](https://imagemagick.org/script/download.php)
+  - ImageMagick:
+
+    - To use the "ProressiveJPEG" class this require the ImageMagick package. To get the latest version [ImageMagick Download Link](https://imagemagick.org/script/download.php)
 
 ## Install
 
