@@ -39,10 +39,10 @@ export class ImageSqueezerCommon {
 
     public load(): void {
         
-        this.verifySupportedOperatingSystem();    
+        this.verifySupportedOperatingSystem();
     }
 
-    public verifySupportedOperatingSystem(): void {
+    private verifySupportedOperatingSystem(): void {
 
         switch (this.getOperatingSystem()) {
             case ImageSqueezerCommon.WINDOWS_OS:
@@ -111,15 +111,17 @@ export class ImageSqueezerCommon {
 
     public build(): void {
         
+        this.validate();
         this.transferSouceFilePathToOutputFilePath();
         this.validateRequiredProperties();
         this.setCommandStatement(this.command());
     }
 
-    public compress(): Promise<boolean> {
-
-        return this.executeChildProcess();
-    }
+    /**
+     * This is an abstract, hook, or no-op class method. 
+     * The subclass is expected to override this method.
+     */
+    protected validate(): void {}
 
     protected transferSouceFilePathToOutputFilePath(): void {
         
@@ -150,10 +152,18 @@ export class ImageSqueezerCommon {
 
     protected generateTemporaryOutputFilePath(): string {
 
+        const FILE_NAME = 0;
+        const FILE_NAME_EXT = 1;
+
         let filename = path.basename(this.outputFilePath);
         let splittedFilename = filename.split('.');
         
-        let newFilename = splittedFilename[0] + '-tmp-' + this.subClassType + '.' + splittedFilename[1];
+        let newFilename = splittedFilename[FILE_NAME] + 
+                          '-tmp-' + 
+                          this.subClassType + 
+                          '.' + 
+                          splittedFilename[FILE_NAME_EXT];
+
         let newBasename = this.escapeShellArg(
             this.outputFilePath.replace(filename, newFilename)
         );
@@ -183,6 +193,17 @@ export class ImageSqueezerCommon {
         return `'${arg.replace(/'/g, `'\\''`)}'`;
     }
 
+    /**
+     * This is an abstract or no-op class method. 
+     * The subclass is expected to override this method.
+     */
+    protected command(): string { return ''; }
+
+    public compress(): Promise<boolean> {
+
+        return this.executeChildProcess();
+    }
+
     protected executeChildProcess(): Promise<boolean> {
         
         if (! this.isExecuteChildProcess) {
@@ -194,14 +215,5 @@ export class ImageSqueezerCommon {
                 (error ? reject(error) : resolve(true));
             });
         });
-    }
-
-    /**
-     * This is an abstract or no-op class method. 
-     * The subclass is expected to override this method.
-     */
-    protected command(): string {
-
-        return '';
     }
 }

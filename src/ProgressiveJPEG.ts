@@ -8,6 +8,7 @@
  */
 
 import { ImageSqueezerCommon } from './ImageSqueezerCommon';
+import { FileFormatResolver } from './Utility/FileFormatResolver';
 
 /**
  * Progressive JPEG Class.
@@ -21,6 +22,20 @@ export class ProgressiveJPEG extends ImageSqueezerCommon {
         super();
         this.setSubClassType('progessive-jpeg');
         this.setBin('convert');
+    }
+
+    protected validate(): void {
+        
+        let allowedExtensionMimeType = {
+            'jpg': 'image/jpeg',
+            'jpeg': 'image/jpeg', 
+            'png': 'image/png'
+        };
+
+        let fileFormatResolver = new FileFormatResolver(allowedExtensionMimeType);
+        
+        fileFormatResolver.setSourceFilePath(this.sourceFilePath);
+        fileFormatResolver.validate();
     }
 
     protected command(): string {

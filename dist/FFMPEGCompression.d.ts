@@ -6,5 +6,6 @@ import { ImageSqueezerCommon } from './ImageSqueezerCommon';
  */
 export declare class FFMPEGCompression extends ImageSqueezerCommon {
     constructor();
+    protected validate(): void;
     protected command(): string;
 }

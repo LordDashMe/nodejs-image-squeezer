@@ -9,6 +9,7 @@
  */
 Object.defineProperty(exports, "__esModule", { value: true });
 const ImageSqueezerCommon_1 = require("./ImageSqueezerCommon");
+const FileFormatResolver_1 = require("./Utility/FileFormatResolver");
 /**
  * Progressive JPEG Class.
  *
@@ -19,6 +20,16 @@ class ProgressiveJPEG extends ImageSqueezerCommon_1.ImageSqueezerCommon {
         super();
         this.setSubClassType('progessive-jpeg');
         this.setBin('convert');
+    }
+    validate() {
+        let allowedExtensionMimeType = {
+            'jpg': 'image/jpeg',
+            'jpeg': 'image/jpeg',
+            'png': 'image/png'
+        };
+        let fileFormatResolver = new FileFormatResolver_1.FileFormatResolver(allowedExtensionMimeType);
+        fileFormatResolver.setSourceFilePath(this.sourceFilePath);
+        fileFormatResolver.validate();
     }
     command() {
         return this.bin + ' ' +

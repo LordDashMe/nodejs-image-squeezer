@@ -79,13 +79,16 @@ class ImageSqueezerCommon {
         this.isExecuteChildProcess = false;
     }
     build() {
+        this.validate();
         this.transferSouceFilePathToOutputFilePath();
         this.validateRequiredProperties();
         this.setCommandStatement(this.command());
     }
-    compress() {
-        return this.executeChildProcess();
-    }
+    /**
+     * This is an abstract, hook, or no-op class method.
+     * The subclass is expected to override this method.
+     */
+    validate() { }
     transferSouceFilePathToOutputFilePath() {
         if (this.isAllowedEmptyOutputFilePath) {
             this.outputFilePath = this.sourceFilePath;
@@ -108,9 +111,15 @@ class ImageSqueezerCommon {
         }
     }
     generateTemporaryOutputFilePath() {
+        const FILE_NAME = 0;
+        const FILE_NAME_EXT = 1;
         let filename = path_1.default.basename(this.outputFilePath);
         let splittedFilename = filename.split('.');
-        let newFilename = splittedFilename[0] + '-tmp-' + this.subClassType + '.' + splittedFilename[1];
+        let newFilename = splittedFilename[FILE_NAME] +
+            '-tmp-' +
+            this.subClassType +
+            '.' +
+            splittedFilename[FILE_NAME_EXT];
         let newBasename = this.escapeShellArg(this.outputFilePath.replace(filename, newFilename));
         return newBasename + this.renameCommandWithCompatibilityChecking(newBasename);
     }
@@ -130,6 +139,14 @@ class ImageSqueezerCommon {
     escapeShellArg(arg) {
         return `'${arg.replace(/'/g, `'\\''`)}'`;
     }
+    /**
+     * This is an abstract or no-op class method.
+     * The subclass is expected to override this method.
+     */
+    command() { return ''; }
+    compress() {
+        return this.executeChildProcess();
+    }
     executeChildProcess() {
         if (!this.isExecuteChildProcess) {
             return Promise.reject(ImageSqueezerCommon.DISABLED_CHILD_PROC_MSG);
@@ -139,13 +156,6 @@ class ImageSqueezerCommon {
                 (error ? reject(error) : resolve(true));
             });
         });
-    }
-    /**
-     * This is an abstract or no-op class method.
-     * The subclass is expected to override this method.
-     */
-    command() {
-        return '';
     }
 }
 ImageSqueezerCommon.WINDOWS_OS = 'win32';

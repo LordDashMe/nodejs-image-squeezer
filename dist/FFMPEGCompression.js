@@ -13,6 +13,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const image_size_1 = __importDefault(require("image-size"));
 const ImageSqueezerCommon_1 = require("./ImageSqueezerCommon");
+const FileFormatResolver_1 = require("./Utility/FileFormatResolver");
 /**
  * FFMPEG Compression Class.
  *
@@ -23,6 +24,16 @@ class FFMPEGCompression extends ImageSqueezerCommon_1.ImageSqueezerCommon {
         super();
         this.setSubClassType('ffmpeg-compression');
         this.setBin('ffmpeg');
+    }
+    validate() {
+        let allowedExtensionMimeType = {
+            'jpg': 'image/jpeg',
+            'jpeg': 'image/jpeg',
+            'png': 'image/png'
+        };
+        let fileFormatResolver = new FileFormatResolver_1.FileFormatResolver(allowedExtensionMimeType);
+        fileFormatResolver.setSourceFilePath(this.sourceFilePath);
+        fileFormatResolver.validate();
     }
     command() {
         let imageDimensions = image_size_1.default(this.sourceFilePath);

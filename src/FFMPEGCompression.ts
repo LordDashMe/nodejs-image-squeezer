@@ -10,6 +10,7 @@
 import imageSize from 'image-size';
 
 import { ImageSqueezerCommon } from './ImageSqueezerCommon';
+import { FileFormatResolver } from './Utility/FileFormatResolver';
 
 /**
  * FFMPEG Compression Class.
@@ -23,6 +24,20 @@ export class FFMPEGCompression extends ImageSqueezerCommon {
         super();
         this.setSubClassType('ffmpeg-compression');
         this.setBin('ffmpeg');
+    }
+
+    protected validate(): void {
+        
+        let allowedExtensionMimeType = {
+            'jpg': 'image/jpeg',
+            'jpeg': 'image/jpeg', 
+            'png': 'image/png'
+        };
+
+        let fileFormatResolver = new FileFormatResolver(allowedExtensionMimeType)
+        
+        fileFormatResolver.setSourceFilePath(this.sourceFilePath)
+        fileFormatResolver.validate();
     }
     
     protected command(): string {

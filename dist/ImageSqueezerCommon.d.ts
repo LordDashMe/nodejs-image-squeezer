@@ -18,7 +18,7 @@ export declare class ImageSqueezerCommon {
     protected isAllowedEmptyOutputFilePath: boolean;
     protected isExecuteChildProcess: boolean;
     load(): void;
-    verifySupportedOperatingSystem(): void;
+    private verifySupportedOperatingSystem;
     setOperatingSystem(operatingSystem: string): void;
     protected getOperatingSystem(): string;
     protected setSubClassType(subClassType: string): void;
@@ -30,17 +30,22 @@ export declare class ImageSqueezerCommon {
     getCommandStatement(): string;
     disableChildProcessExecution(): void;
     build(): void;
-    compress(): Promise<boolean>;
+    /**
+     * This is an abstract, hook, or no-op class method.
+     * The subclass is expected to override this method.
+     */
+    protected validate(): void;
     protected transferSouceFilePathToOutputFilePath(): void;
     protected validateRequiredProperties(): void;
     protected handleOutputFilePath(): string;
     protected generateTemporaryOutputFilePath(): string;
     private renameCommandWithCompatibilityChecking;
     protected escapeShellArg(arg: string): string;
-    protected executeChildProcess(): Promise<boolean>;
     /**
      * This is an abstract or no-op class method.
      * The subclass is expected to override this method.
      */
     protected command(): string;
+    compress(): Promise<boolean>;
+    protected executeChildProcess(): Promise<boolean>;
 }
