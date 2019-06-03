@@ -68,6 +68,10 @@ imgSqueezer.setOutputFilePath('/path/output-filename');
 // and will use the source file path as the output.
 imgSqueezer.allowEmptyOutputFilePath();
 
+// Prepare all necessary commands before executing
+// the compression process.
+imgSqueezer.build();
+
 // Execute the image compression.
 // Please take note this is an async method.
 // return a Promise<boolean>.
@@ -102,6 +106,10 @@ imgSqueezer.setOutputFilePath('/path/output-filename');
 // and will use the source file path as the output.
 imgSqueezer.allowEmptyOutputFilePath();
 
+// Prepare all necessary commands before executing
+// the compression process.
+imgSqueezer.build();
+
 // Execute the image compression.
 // Please take note this is an async method.
 // return a Promise<boolean>.
@@ -129,6 +137,8 @@ imgSqueezer.setOutputFilePath('/path/output-filename');
 // and will use the source file path as the output.
 imgSqueezer.allowEmptyOutputFilePath();
 
+imgSqueezer.build();
+
 // Execute the jpeg progressive optimization.
 // Please take note this is an async method.
 // return a Promise<boolean>.
@@ -151,6 +161,8 @@ imgSqueezer.setOutputFilePath('/path/output-filename');
 // (Optional) This will allow output file path as empty
 // and will use the source file path as the output.
 imgSqueezer.allowEmptyOutputFilePath();
+
+imgSqueezer.build();
 
 // Execute the jpeg progressive optimization.
 // Please take note this is an async method.
