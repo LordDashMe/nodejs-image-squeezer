@@ -6,7 +6,7 @@ A simple npm package for image compression powered by FFMPEG.
 
 ## Requirement(s)
 
-- Node.js 8.0.* up to latest.
+- Node.js **8.0.x** up to **latest**.
 
 - Operating System: Windows, Linux.
 
