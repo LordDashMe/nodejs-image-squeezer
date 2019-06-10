@@ -65,7 +65,7 @@ imgSqueezer.setSourceFilePath('/path/source-filename');
 imgSqueezer.setOutputFilePath('/path/output-filename');
 
 // (Optional) This will allow output file path as empty
-// and will use the source file path as the output.
+// and will use the source file path as the output file path.
 imgSqueezer.allowEmptyOutputFilePath();
 
 // Prepare all necessary commands before executing
@@ -103,7 +103,7 @@ imgSqueezer.setSourceFilePath('/path/source-filename');
 imgSqueezer.setOutputFilePath('/path/output-filename');
 
 // (Optional) This will allow output file path as empty
-// and will use the source file path as the output.
+// and will use the source file path as the output file path.
 imgSqueezer.allowEmptyOutputFilePath();
 
 // Prepare all necessary commands before executing
@@ -134,7 +134,7 @@ imgSqueezer.setSourceFilePath('/path/source-filename');
 imgSqueezer.setOutputFilePath('/path/output-filename');
 
 // (Optional) This will allow output file path as empty
-// and will use the source file path as the output.
+// and will use the source file path as the output file path.
 imgSqueezer.allowEmptyOutputFilePath();
 
 imgSqueezer.build();
@@ -159,7 +159,7 @@ imgSqueezer.setSourceFilePath('/path/source-filename');
 imgSqueezer.setOutputFilePath('/path/output-filename');
 
 // (Optional) This will allow output file path as empty
-// and will use the source file path as the output.
+// and will use the source file path as the output file path.
 imgSqueezer.allowEmptyOutputFilePath();
 
 imgSqueezer.build();
