@@ -1,12 +1,12 @@
 {
   "name": "nodejs-image-squeezer",
-  "version": "1.2.9",
+  "version": "1.2.10",
   "description": "A simple npm package for image compression powered by FFMPEG.",
   "main": "dist/ImageSqueezer.js",
   "types": "dist/ImageSqueezer.d.ts",
   "scripts": {
     "test": "jest",
-    "build:production": "standard-version && npm publish",
+    "build:production": "standard-version",
     "build:tsc": "./node_modules/.bin/tsc"
   },
   "keywords": [
