@@ -68,6 +68,12 @@ imgSqueezer.setOutputFilePath('/path/output-filename');
 // and will use the source file path as the output file path.
 imgSqueezer.allowEmptyOutputFilePath();
 
+// (Optional) To adjust the compression level.
+// COMPRESSION_LEVEL_LOW = 30%
+// COMPRESSION_LEVEL_NORMAL = 70%
+// (Default) COMPRESSION_LEVEL_HIGH = 100%
+imgSqueezer.setCompressionLevel(ImageSqueezer.FFMPEGComppresion.COMPRESSION_LEVEL_NORMAL);
+
 // Prepare all necessary commands before executing
 // the compression process.
 imgSqueezer.build();
@@ -105,6 +111,12 @@ imgSqueezer.setOutputFilePath('/path/output-filename');
 // (Optional) This will allow output file path as empty
 // and will use the source file path as the output file path.
 imgSqueezer.allowEmptyOutputFilePath();
+
+// (Optional) To adjust the compression level.
+// COMPRESSION_LEVEL_LOW = 30%
+// COMPRESSION_LEVEL_NORMAL = 70%
+// (Default) COMPRESSION_LEVEL_HIGH = 100%
+imgSqueezer.setCompressionLevel(ImageSqueezer.FFMPEGComppresion.COMPRESSION_LEVEL_NORMAL);
 
 // Prepare all necessary commands before executing
 // the compression process.
