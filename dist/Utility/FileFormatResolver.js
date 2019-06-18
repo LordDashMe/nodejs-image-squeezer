@@ -58,5 +58,8 @@ class FileFormatResolver {
             this.fileTypeDetails['mime'] = fileTypeDetails.mime;
         }
     }
+    getMimeType() {
+        return this.fileTypeDetails['mime'];
+    }
 }
 exports.FileFormatResolver = FileFormatResolver;

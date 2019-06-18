@@ -6,8 +6,8 @@
   "types": "dist/ImageSqueezer.d.ts",
   "scripts": {
     "test": "jest",
-    "build-release": "standard-version",
-    "build-tsc": "./node_modules/.bin/tsc"
+    "build:production": "standard-version && npm publish",
+    "build:tsc": "./node_modules/.bin/tsc"
   },
   "keywords": [
     "image",

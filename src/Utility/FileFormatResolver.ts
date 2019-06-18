@@ -77,4 +77,9 @@ export class FileFormatResolver {
             this.fileTypeDetails['mime'] = fileTypeDetails.mime;
         }
     }
+
+    public getMimeType(): string {
+        
+        return this.fileTypeDetails['mime'];
+    }
 }

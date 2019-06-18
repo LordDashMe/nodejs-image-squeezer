@@ -17,4 +17,5 @@ export declare class FileFormatResolver {
     validate(): void;
     private setFileNameExtension;
     private setFileTypeDetails;
+    getMimeType(): string;
 }

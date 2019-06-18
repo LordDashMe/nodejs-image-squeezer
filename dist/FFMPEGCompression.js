@@ -22,8 +22,26 @@ const FileFormatResolver_1 = require("./Utility/FileFormatResolver");
 class FFMPEGCompression extends ImageSqueezerCommon_1.ImageSqueezerCommon {
     constructor() {
         super();
+        this.currentFileMimeType = '';
+        this.compressionLevel = { jpeg: '100', png: '100' };
         this.setSubClassType('ffmpeg-compression');
         this.setBin('ffmpeg');
+    }
+    setCompressionLevel(compressionLevel) {
+        switch (compressionLevel) {
+            case FFMPEGCompression.COMPRESSION_LEVEL_LOW:
+                this.compressionLevel['jpeg'] = '2';
+                this.compressionLevel['png'] = '1';
+                break;
+            case FFMPEGCompression.COMPRESSION_LEVEL_NORMAL:
+                this.compressionLevel['jpeg'] = '6';
+                this.compressionLevel['png'] = '3';
+                break;
+            case FFMPEGCompression.COMPRESSION_LEVEL_HIGH:
+            default:
+                this.compressionLevel['jpeg'] = '100';
+                this.compressionLevel['png'] = '100';
+        }
     }
     validate() {
         let allowedExtensionMimeType = {
@@ -34,6 +52,7 @@ class FFMPEGCompression extends ImageSqueezerCommon_1.ImageSqueezerCommon {
         let fileFormatResolver = new FileFormatResolver_1.FileFormatResolver(allowedExtensionMimeType);
         fileFormatResolver.setSourceFilePath(this.sourceFilePath);
         fileFormatResolver.validate();
+        this.currentFileMimeType = fileFormatResolver.getMimeType();
     }
     command() {
         let imageDimensions = image_size_1.default(this.sourceFilePath);
@@ -42,7 +61,26 @@ class FFMPEGCompression extends ImageSqueezerCommon_1.ImageSqueezerCommon {
             ' -vf scale=w=' + imageDimensions.width +
             ':h=' + imageDimensions.height +
             ':force_original_aspect_ratio=decrease:interl=1 ' +
+            this.compressionType() +
             this.handleOutputFilePath();
     }
+    compressionType() {
+        switch (this.currentFileMimeType) {
+            case 'image/png':
+                return this.compressionCommandForPNGFormat();
+            case 'image/jpeg':
+            default:
+                return this.compressionCommandForJPEGFormat();
+        }
+    }
+    compressionCommandForJPEGFormat() {
+        return '-qscale:v ' + this.compressionLevel['jpeg'] + ' ';
+    }
+    compressionCommandForPNGFormat() {
+        return '-compression_level ' + this.compressionLevel['png'] + ' ';
+    }
 }
+FFMPEGCompression.COMPRESSION_LEVEL_LOW = 1;
+FFMPEGCompression.COMPRESSION_LEVEL_NORMAL = 2;
+FFMPEGCompression.COMPRESSION_LEVEL_HIGH = 3;
 exports.FFMPEGCompression = FFMPEGCompression;

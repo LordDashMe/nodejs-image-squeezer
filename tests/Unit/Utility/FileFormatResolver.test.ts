@@ -59,3 +59,20 @@ it('should pass the validation', (): void => {
 
     expect(true).toBe(true);
 });
+
+it('should return the current file mime type', (): void => {
+
+    let imageMockDirectory = getMockDiretory('images/');
+
+    let allowedExtensionMimeType = {
+        'jpg': 'image/jpeg',
+        'jpeg': 'image/jpeg', 
+        'png': 'image/png'
+    };
+
+    let fileFormatResolver = new FileFormatResolver(allowedExtensionMimeType);
+        fileFormatResolver.setSourceFilePath(imageMockDirectory + 'uncompressed.jpg');
+        fileFormatResolver.validate();
+
+    expect(fileFormatResolver.getMimeType()).toBe('image/jpeg');
+});
