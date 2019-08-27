@@ -48,7 +48,7 @@ npm install nodejs-image-squeezer --save
 import ImageSqueezer from 'nodejs-image-squeezer';
 
 // Initialize the main class.
-let imgSqueezer = new ImageSqueezer.FFMPEGComppresion();
+const imgSqueezer = new ImageSqueezer.FFMPEGComppresion();
 
 // Load the necessary requirements and validate
 // if the package fit for the current environment.
@@ -84,15 +84,15 @@ imgSqueezer.build();
 imgSqueezer.compress();
 ```
 
-- Basic implementation without using superset libraries for JavaScript (using a pure node.js syntax):
+- Basic implementation without using superset libraries for JavaScript:
 
 ```js
 
 // Require the main class of the NodeJS Image Squeezer.
-let ImageSqueezer = require('nodejs-image-squeezer');
+const ImageSqueezer = require('nodejs-image-squeezer');
 
 // Initialize the main class.
-let imgSqueezer = new ImageSqueezer.FFMPEGComppresion();
+const imgSqueezer = new ImageSqueezer.FFMPEGComppresion();
 
 // Load the necessary requirements and validate
 // if the package fit for the current environment.
@@ -138,7 +138,7 @@ imgSqueezer.compress();
 
 import ImageSqueezer from 'nodejs-image-squeezer';
 
-let imgSqueezer = new ImageSqueezer.ProgressiveJPEG();
+const imgSqueezer = new ImageSqueezer.ProgressiveJPEG();
 
 imgSqueezer.load();
 imgSqueezer.setBin('/path/to/convert');
@@ -161,9 +161,9 @@ imgSqueezer.compress();
 
 ```js
 
-let ImageSqueezer = require('nodejs-image-squeezer');
+const ImageSqueezer = require('nodejs-image-squeezer');
 
-let imgSqueezer = new ImageSqueezer.ProgressiveJPEG();
+const imgSqueezer = new ImageSqueezer.ProgressiveJPEG();
 
 imgSqueezer.load();
 imgSqueezer.setBin('/path/to/convert');
