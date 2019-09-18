@@ -16,7 +16,7 @@ A simple npm package for image compression powered by FFMPEG.
 
   - For **Windows** you can download it via this link: [Windows FFMPEG Build](https://ffmpeg.zeranoe.com/builds/)
 
-  - As of the moment **Mac OS** is not supported by this package.
+  - As of the moment **MacOS** is not supported.
 
   - To check the FFMPEG latest build or release please refer to this link: [FFMPEG Main Download Link](https://ffmpeg.org/download.html)
 
