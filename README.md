@@ -130,7 +130,7 @@ imgSqueezer.compress();
 
 ### JPEG Progressive
 
-- ***Note:*** This function will only work for JPEG format.
+- **Note:** This function will only work for JPEG format.
 
 - Below are the simple implementation using **TypeScript**:
 
