@@ -84,7 +84,7 @@ imgSqueezer.build();
 imgSqueezer.compress();
 ```
 
-- Basic implementation without using superset libraries for JavaScript:
+- Basic implementation using Vanilla JavaScript:
 
 ```js
 
