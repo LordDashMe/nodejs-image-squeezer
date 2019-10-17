@@ -70,7 +70,7 @@ export class FileFormatResolver {
             this.sourceFilePath, 0, fileType.minimumBytes
         );
 
-        let fileTypeDetails = fileType(buffer);
+        const fileTypeDetails = fileType(buffer);
 
         if (typeof fileTypeDetails !== 'undefined' || fileTypeDetails) {
             this.fileTypeDetails['ext'] = fileTypeDetails.ext;
