@@ -42,9 +42,9 @@ The documentation needed to read in order to contribute in the project.
 
 ### Preparing Production Build
 
-- Transpile the typescript code: ```npm run build:tsc```.
+- Transpile the typescript code: ```npm run build:tsc```
 
-- Generate latest release tag: ```npm run build:production```.
+- Generate latest release tag: ```npm run build:production```
 
 ## Publishing
 
@@ -52,16 +52,16 @@ The documentation needed to read in order to contribute in the project.
 
 - To submit on Github Packages:
 
-```text
+  ```text
 
-$ npm login --registry=https://npm.pkg.github.com/
-> Username: USERNAME
-> Password: TOKEN
-> Email: PUBLIC-EMAIL-ADDRESS
+  $ npm login --registry=https://npm.pkg.github.com/
+  > Username: USERNAME
+  > Password: TOKEN
+  > Email: PUBLIC-EMAIL-ADDRESS
 
-$ npm publish
-> SUCESS!
+  $ npm publish
+  > SUCESS!
 
-```
+  ```
 
 - To submit on npm regular registry just run: ```npm publish```.
