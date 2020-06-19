@@ -64,4 +64,4 @@ The documentation needed to read in order to contribute in the project.
 
   ```
 
-- To submit on npm regular registry just run: ```npm publish```.
+- To submit on npm regular registry just run: ```npm publish```
