@@ -12,7 +12,7 @@
  * 
  * @author Joshua Clifford Reyes <reyesjoshuaclifford@gmail.com>
  */
-export class ImageSqueezerCommonException extends Error {
+export default class ImageSqueezerCommonException extends Error {
 
     constructor(message: string) {
 

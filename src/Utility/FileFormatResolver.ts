@@ -11,9 +11,9 @@ import path from 'path';
 import fileType from 'file-type';
 import readChunk from 'read-chunk';
 
-import { FileTypeDetailsInterface } from './FileTypeDetailsInterface';
-import { FileFormatException } from '../Exception/FileFormatException';
-import { ExtensionMimeTypeInterface } from './ExtensionMimeTypeInterface';
+import FileTypeDetailsInterface from './FileTypeDetailsInterface';
+import FileFormatException from '../Exception/FileFormatException';
+import ExtensionMimeTypeInterface from './ExtensionMimeTypeInterface';
 
 /**
  * File Format Resolver Class.
@@ -23,7 +23,7 @@ import { ExtensionMimeTypeInterface } from './ExtensionMimeTypeInterface';
  * 
  * @author Joshua Clifford Reyes <reyesjoshuaclifford@gmail.com>
  */
-export class FileFormatResolver {
+export default class FileFormatResolver {
 
     private allowedExtensionMimeType: ExtensionMimeTypeInterface = {};
     private sourceFilePath: string = '';
@@ -58,17 +58,16 @@ export class FileFormatResolver {
         
         const FILE_NAME_EXT = 1;
         
-        let filename = path.basename(this.sourceFilePath);
-        let splittedFilename = filename.split('.');
+        const filename = path.basename(this.sourceFilePath);
+
+        const splittedFilename = filename.split('.');
 
         this.fileNameExtension = splittedFilename[FILE_NAME_EXT];
     }
 
     private setFileTypeDetails(): void {
         
-        const buffer = readChunk.sync(
-            this.sourceFilePath, 0, fileType.minimumBytes
-        );
+        const buffer = readChunk.sync(this.sourceFilePath, 0, fileType.minimumBytes);
 
         const fileTypeDetails = fileType(buffer);
 

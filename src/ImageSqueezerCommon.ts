@@ -10,15 +10,15 @@
 import path from 'path';
 import cli from 'child_process';
 
-import { OperatingSystemException } from './Exception/OperatingSystemException';
-import { ImageSqueezerCommonException } from './Exception/ImageSqueezerCommonException';
+import OperatingSystemException from './Exception/OperatingSystemException';
+import ImageSqueezerCommonException from './Exception/ImageSqueezerCommonException';
 
 /**
  * Image Squeezer Common Class.
  * 
  * @author Joshua Clifford Reyes <reyesjoshuaclifford@gmail.com>
  */
-export class ImageSqueezerCommon {
+export default class ImageSqueezerCommon {
 
     public static readonly WINDOWS_OS: string = 'win32';
     public static readonly LINUX_OS: string = 'linux';
@@ -118,8 +118,10 @@ export class ImageSqueezerCommon {
     }
 
     /**
-     * This is an abstract, hook, or no-op class method. 
-     * The subclass is expected to override this method.
+     * [HOOK METHOD]
+     * 
+     * This is an abstract or no-op (no operation) class method. 
+     * The subclass of this class is expected to override this method.
      */
     protected validate(): void {}
 
@@ -152,21 +154,20 @@ export class ImageSqueezerCommon {
 
     protected generateTemporaryOutputFilePath(): string {
 
+        const filename = path.basename(this.outputFilePath);
+        
+        const splittedFilename = filename.split('.');
+
         const FILE_NAME = 0;
         const FILE_NAME_EXT = 1;
 
-        let filename = path.basename(this.outputFilePath);
-        let splittedFilename = filename.split('.');
-        
-        let newFilename = splittedFilename[FILE_NAME] + 
-                          '-tmp-' + 
-                          this.subClassType + 
-                          '.' + 
-                          splittedFilename[FILE_NAME_EXT];
-
-        let newBasename = this.escapeShellArg(
-            this.outputFilePath.replace(filename, newFilename)
+        const newFilename = (
+            splittedFilename[FILE_NAME] + 
+            '-tmp-' + this.subClassType + '.' + 
+            splittedFilename[FILE_NAME_EXT]
         );
+
+        const newBasename = this.escapeShellArg(this.outputFilePath.replace(filename, newFilename));
 
         return newBasename + this.renameCommandWithCompatibilityChecking(newBasename);       
     }
@@ -194,10 +195,15 @@ export class ImageSqueezerCommon {
     }
 
     /**
-     * This is an abstract, hook, or no-op class method. 
-     * The subclass is expected to override this method.
+     * [HOOK METHOD]
+     * 
+     * This is an abstract or no-op (no operation) class method. 
+     * The subclass of this class is expected to override this method.
      */
-    protected command(): string { return ''; }
+    protected command(): string { 
+        
+        return ''; 
+    }
 
     public compress(): Promise<boolean> {
 
@@ -210,7 +216,10 @@ export class ImageSqueezerCommon {
             return Promise.reject(ImageSqueezerCommon.DISABLED_CHILD_PROC_MSG);
         }
 
+        // Since we use the standard "child_process" package implementation
+        // we implemented also a standard promise in order to catch the response of the process. 
         return new Promise((resolve, reject): void => {
+
             cli.exec(this.commandStatement, (error): void => {
                 (error ? reject(error) : resolve(true));
             });

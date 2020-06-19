@@ -12,7 +12,7 @@
  * 
  * @author Joshua Clifford Reyes <reyesjoshuaclifford@gmail.com>
  */
-export class OperatingSystemException extends Error {
+export default class OperatingSystemException extends Error {
 
     constructor(message: string) {
 

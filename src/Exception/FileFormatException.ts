@@ -12,7 +12,7 @@
  * 
  * @author Joshua Clifford Reyes <reyesjoshuaclifford@gmail.com>
  */
-export class FileFormatException extends Error {
+export default class FileFormatException extends Error {
 
     constructor(message: string) {
 

@@ -12,7 +12,7 @@
  * 
  * @author Joshua Clifford Reyes <reyesjoshuaclifford@gmail.com>
  */
-export interface FileTypeDetailsInterface {
+export default interface FileTypeDetailsInterface {
     ext: string;
     mime: string;
 }

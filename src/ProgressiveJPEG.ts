@@ -7,15 +7,15 @@
  * file that was distributed with this source code.
  */
 
-import { ImageSqueezerCommon } from './ImageSqueezerCommon';
-import { FileFormatResolver } from './Utility/FileFormatResolver';
+import ImageSqueezerCommon from './ImageSqueezerCommon';
+import FileFormatResolver from './Utility/FileFormatResolver';
 
 /**
  * Progressive JPEG Class.
  * 
  * @author Joshua Clifford Reyes <reyesjoshuaclifford@gmail.com>
  */
-export class ProgressiveJPEG extends ImageSqueezerCommon {
+export default class ProgressiveJPEG extends ImageSqueezerCommon {
 
     public constructor() {
         
@@ -26,13 +26,13 @@ export class ProgressiveJPEG extends ImageSqueezerCommon {
 
     protected validate(): void {
         
-        let allowedExtensionMimeType = {
+        const allowedExtensionMimeType = {
             'jpg': 'image/jpeg',
             'jpeg': 'image/jpeg', 
             'png': 'image/png'
         };
 
-        let fileFormatResolver = new FileFormatResolver(allowedExtensionMimeType);
+        const fileFormatResolver = new FileFormatResolver(allowedExtensionMimeType);
         
         fileFormatResolver.setSourceFilePath(this.sourceFilePath);
         fileFormatResolver.validate();

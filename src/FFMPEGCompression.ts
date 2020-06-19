@@ -9,16 +9,16 @@
 
 import imageSize from 'image-size';
 
-import { FFMPEGCompressionLevelInterface } from './FFMPEGCompressionLevelInterface';
-import { ImageSqueezerCommon } from './ImageSqueezerCommon';
-import { FileFormatResolver } from './Utility/FileFormatResolver';
+import ImageSqueezerCommon from './ImageSqueezerCommon';
+import FileFormatResolver from './Utility/FileFormatResolver';
+import FFMPEGCompressionLevelInterface from './FFMPEGCompressionLevelInterface';
 
 /**
  * FFMPEG Compression Class.
  * 
  * @author Joshua Clifford Reyes <reyesjoshuaclifford@gmail.com>
  */
-export class FFMPEGCompression extends ImageSqueezerCommon {
+export default class FFMPEGCompression extends ImageSqueezerCommon {
 
     public static readonly COMPRESSION_LEVEL_LOW: number = 1;
     public static readonly COMPRESSION_LEVEL_NORMAL: number = 2;
@@ -54,15 +54,15 @@ export class FFMPEGCompression extends ImageSqueezerCommon {
 
     protected validate(): void {
         
-        let allowedExtensionMimeType = {
+        const allowedExtensionMimeType = {
             'jpg': 'image/jpeg',
             'jpeg': 'image/jpeg', 
             'png': 'image/png'
         };
 
-        let fileFormatResolver = new FileFormatResolver(allowedExtensionMimeType)
+        const fileFormatResolver = new FileFormatResolver(allowedExtensionMimeType);
         
-        fileFormatResolver.setSourceFilePath(this.sourceFilePath)
+        fileFormatResolver.setSourceFilePath(this.sourceFilePath);
         fileFormatResolver.validate();
 
         this.currentFileMimeType = fileFormatResolver.getMimeType();
@@ -70,7 +70,7 @@ export class FFMPEGCompression extends ImageSqueezerCommon {
     
     protected command(): string {
 
-        let imageDimensions = imageSize(this.sourceFilePath);
+        const imageDimensions = imageSize(this.sourceFilePath);
 
         return this.bin + ' -y -i ' + 
                this.escapeShellArg(this.sourceFilePath) + 
