@@ -3,3 +3,4 @@
 /jest-cache/
 /jest-coverage/
 .env
+npm-debug.log
