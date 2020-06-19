@@ -1,6 +1,6 @@
 {
   "name": "nodejs-image-squeezer",
-  "version": "1.2.11",
+  "version": "1.2.12",
   "description": "A simple npm package for image compression powered by FFMPEG.",
   "main": "dist/ImageSqueezer.js",
   "types": "dist/ImageSqueezer.d.ts",
@@ -35,7 +35,6 @@
     "@typescript-eslint/parser": "^1.9.0",
     "eslint": "^5.16.0",
     "husky": "^2.3.0",
-    "image-size": "^0.7.4",
     "jest": "^24.8.0",
     "lint-staged": "^8.1.7",
     "standard-version": "^6.0.1",
@@ -47,8 +46,7 @@
     "@types/node": "^12.0.2",
     "file-type": "^11.1.0",
     "image-size": "^0.7.4",
-    "read-chunk": "^3.2.0",
-    "typescript": "^3.4.5"
+    "read-chunk": "^3.2.0"
   },
   "config": {
     "commitizen": {
@@ -70,5 +68,8 @@
     "ignore": [
       "**/dist/*.min.js"
     ]
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
   }
 }
