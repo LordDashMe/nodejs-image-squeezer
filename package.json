@@ -68,8 +68,5 @@
     "ignore": [
       "**/dist/*.min.js"
     ]
-  },
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com/"
   }
 }

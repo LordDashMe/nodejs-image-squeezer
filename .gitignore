@@ -1,6 +1,6 @@
 /node_modules/
-/build/
-/jest-cache/
-/jest-coverage/
+build/
+jest-cache/
+jest-coverage/
 .env
 npm-debug.log
