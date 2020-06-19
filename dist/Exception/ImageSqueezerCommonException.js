@@ -25,4 +25,4 @@ class ImageSqueezerCommonException extends Error {
         return new ImageSqueezerCommonException('The output file path is empty.');
     }
 }
-exports.ImageSqueezerCommonException = ImageSqueezerCommonException;
+exports.default = ImageSqueezerCommonException;

@@ -3,6 +3,6 @@
  *
  * @author Joshua Clifford Reyes <reyesjoshuaclifford@gmail.com>
  */
-export interface ExtensionMimeTypeInterface {
+export default interface ExtensionMimeTypeInterface {
     [key: string]: string;
 }

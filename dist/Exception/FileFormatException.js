@@ -25,4 +25,4 @@ class FileFormatException extends Error {
         return new FileFormatException('The file name extension is not equal to the actual file content mime type.');
     }
 }
-exports.FileFormatException = FileFormatException;
+exports.default = FileFormatException;

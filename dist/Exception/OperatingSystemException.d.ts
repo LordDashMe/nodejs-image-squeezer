@@ -3,7 +3,7 @@
  *
  * @author Joshua Clifford Reyes <reyesjoshuaclifford@gmail.com>
  */
-export declare class OperatingSystemException extends Error {
+export default class OperatingSystemException extends Error {
     constructor(message: string);
     static isNotSupported(): OperatingSystemException;
 }

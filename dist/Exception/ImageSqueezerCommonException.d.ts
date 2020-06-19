@@ -3,7 +3,7 @@
  *
  * @author Joshua Clifford Reyes <reyesjoshuaclifford@gmail.com>
  */
-export declare class ImageSqueezerCommonException extends Error {
+export default class ImageSqueezerCommonException extends Error {
     constructor(message: string);
     static emptySourceFilePath(): ImageSqueezerCommonException;
     static emptyOutputFilePath(): ImageSqueezerCommonException;

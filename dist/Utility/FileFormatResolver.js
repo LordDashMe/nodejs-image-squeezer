@@ -14,7 +14,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const path_1 = __importDefault(require("path"));
 const file_type_1 = __importDefault(require("file-type"));
 const read_chunk_1 = __importDefault(require("read-chunk"));
-const FileFormatException_1 = require("../Exception/FileFormatException");
+const FileFormatException_1 = __importDefault(require("../Exception/FileFormatException"));
 /**
  * File Format Resolver Class.
  *
@@ -38,21 +38,21 @@ class FileFormatResolver {
         this.setFileNameExtension();
         this.setFileTypeDetails();
         if (typeof this.allowedExtensionMimeType[this.fileTypeDetails['ext']] === 'undefined') {
-            throw FileFormatException_1.FileFormatException.extensionIsNotSupported();
+            throw FileFormatException_1.default.extensionIsNotSupported();
         }
         if (this.allowedExtensionMimeType[this.fileNameExtension] !== this.fileTypeDetails['mime']) {
-            throw FileFormatException_1.FileFormatException.extensionAndMimeTypeIsNotEqual();
+            throw FileFormatException_1.default.extensionAndMimeTypeIsNotEqual();
         }
     }
     setFileNameExtension() {
         const FILE_NAME_EXT = 1;
-        let filename = path_1.default.basename(this.sourceFilePath);
-        let splittedFilename = filename.split('.');
+        const filename = path_1.default.basename(this.sourceFilePath);
+        const splittedFilename = filename.split('.');
         this.fileNameExtension = splittedFilename[FILE_NAME_EXT];
     }
     setFileTypeDetails() {
         const buffer = read_chunk_1.default.sync(this.sourceFilePath, 0, file_type_1.default.minimumBytes);
-        let fileTypeDetails = file_type_1.default(buffer);
+        const fileTypeDetails = file_type_1.default(buffer);
         if (typeof fileTypeDetails !== 'undefined' || fileTypeDetails) {
             this.fileTypeDetails['ext'] = fileTypeDetails.ext;
             this.fileTypeDetails['mime'] = fileTypeDetails.mime;
@@ -62,4 +62,4 @@ class FileFormatResolver {
         return this.fileTypeDetails['mime'];
     }
 }
-exports.FileFormatResolver = FileFormatResolver;
+exports.default = FileFormatResolver;

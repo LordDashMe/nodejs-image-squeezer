@@ -3,7 +3,7 @@
  *
  * @author Joshua Clifford Reyes <reyesjoshuaclifford@gmail.com>
  */
-export declare class ImageSqueezerCommon {
+export default class ImageSqueezerCommon {
     static readonly WINDOWS_OS: string;
     static readonly LINUX_OS: string;
     static readonly UNIX_OS: string;
@@ -31,8 +31,10 @@ export declare class ImageSqueezerCommon {
     disableChildProcessExecution(): void;
     build(): void;
     /**
-     * This is an abstract, hook, or no-op class method.
-     * The subclass is expected to override this method.
+     * [HOOK METHOD]
+     *
+     * This is an abstract or no-op (no operation) class method.
+     * The subclass of this class is expected to override this method.
      */
     protected validate(): void;
     protected transferSouceFilePathToOutputFilePath(): void;
@@ -42,8 +44,10 @@ export declare class ImageSqueezerCommon {
     private renameCommandWithCompatibilityChecking;
     protected escapeShellArg(arg: string): string;
     /**
-     * This is an abstract or no-op class method.
-     * The subclass is expected to override this method.
+     * [HOOK METHOD]
+     *
+     * This is an abstract or no-op (no operation) class method.
+     * The subclass of this class is expected to override this method.
      */
     protected command(): string;
     compress(): Promise<boolean>;

@@ -1,10 +1,10 @@
-import { ImageSqueezerCommon } from './ImageSqueezerCommon';
+import ImageSqueezerCommon from './ImageSqueezerCommon';
 /**
  * FFMPEG Compression Class.
  *
  * @author Joshua Clifford Reyes <reyesjoshuaclifford@gmail.com>
  */
-export declare class FFMPEGCompression extends ImageSqueezerCommon {
+export default class FFMPEGCompression extends ImageSqueezerCommon {
     static readonly COMPRESSION_LEVEL_LOW: number;
     static readonly COMPRESSION_LEVEL_NORMAL: number;
     static readonly COMPRESSION_LEVEL_HIGH: number;

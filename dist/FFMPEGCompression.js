@@ -12,14 +12,14 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const image_size_1 = __importDefault(require("image-size"));
-const ImageSqueezerCommon_1 = require("./ImageSqueezerCommon");
-const FileFormatResolver_1 = require("./Utility/FileFormatResolver");
+const ImageSqueezerCommon_1 = __importDefault(require("./ImageSqueezerCommon"));
+const FileFormatResolver_1 = __importDefault(require("./Utility/FileFormatResolver"));
 /**
  * FFMPEG Compression Class.
  *
  * @author Joshua Clifford Reyes <reyesjoshuaclifford@gmail.com>
  */
-class FFMPEGCompression extends ImageSqueezerCommon_1.ImageSqueezerCommon {
+class FFMPEGCompression extends ImageSqueezerCommon_1.default {
     constructor() {
         super();
         this.currentFileMimeType = '';
@@ -44,18 +44,18 @@ class FFMPEGCompression extends ImageSqueezerCommon_1.ImageSqueezerCommon {
         }
     }
     validate() {
-        let allowedExtensionMimeType = {
+        const allowedExtensionMimeType = {
             'jpg': 'image/jpeg',
             'jpeg': 'image/jpeg',
             'png': 'image/png'
         };
-        let fileFormatResolver = new FileFormatResolver_1.FileFormatResolver(allowedExtensionMimeType);
+        const fileFormatResolver = new FileFormatResolver_1.default(allowedExtensionMimeType);
         fileFormatResolver.setSourceFilePath(this.sourceFilePath);
         fileFormatResolver.validate();
         this.currentFileMimeType = fileFormatResolver.getMimeType();
     }
     command() {
-        let imageDimensions = image_size_1.default(this.sourceFilePath);
+        const imageDimensions = image_size_1.default(this.sourceFilePath);
         return this.bin + ' -y -i ' +
             this.escapeShellArg(this.sourceFilePath) +
             ' -vf scale=w=' + imageDimensions.width +
@@ -80,7 +80,7 @@ class FFMPEGCompression extends ImageSqueezerCommon_1.ImageSqueezerCommon {
         return '-compression_level ' + this.compressionLevel['png'] + ' ';
     }
 }
+exports.default = FFMPEGCompression;
 FFMPEGCompression.COMPRESSION_LEVEL_LOW = 1;
 FFMPEGCompression.COMPRESSION_LEVEL_NORMAL = 2;
 FFMPEGCompression.COMPRESSION_LEVEL_HIGH = 3;
-exports.FFMPEGCompression = FFMPEGCompression;

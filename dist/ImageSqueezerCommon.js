@@ -13,8 +13,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const path_1 = __importDefault(require("path"));
 const child_process_1 = __importDefault(require("child_process"));
-const OperatingSystemException_1 = require("./Exception/OperatingSystemException");
-const ImageSqueezerCommonException_1 = require("./Exception/ImageSqueezerCommonException");
+const OperatingSystemException_1 = __importDefault(require("./Exception/OperatingSystemException"));
+const ImageSqueezerCommonException_1 = __importDefault(require("./Exception/ImageSqueezerCommonException"));
 /**
  * Image Squeezer Common Class.
  *
@@ -42,7 +42,7 @@ class ImageSqueezerCommon {
                 break;
             case ImageSqueezerCommon.MACOSX_OS:
             default:
-                throw OperatingSystemException_1.OperatingSystemException.isNotSupported();
+                throw OperatingSystemException_1.default.isNotSupported();
         }
     }
     setOperatingSystem(operatingSystem) {
@@ -85,8 +85,10 @@ class ImageSqueezerCommon {
         this.setCommandStatement(this.command());
     }
     /**
-     * This is an abstract, hook, or no-op class method.
-     * The subclass is expected to override this method.
+     * [HOOK METHOD]
+     *
+     * This is an abstract or no-op (no operation) class method.
+     * The subclass of this class is expected to override this method.
      */
     validate() { }
     transferSouceFilePathToOutputFilePath() {
@@ -96,10 +98,10 @@ class ImageSqueezerCommon {
     }
     validateRequiredProperties() {
         if (!this.sourceFilePath) {
-            throw ImageSqueezerCommonException_1.ImageSqueezerCommonException.emptySourceFilePath();
+            throw ImageSqueezerCommonException_1.default.emptySourceFilePath();
         }
         if (!this.outputFilePath) {
-            throw ImageSqueezerCommonException_1.ImageSqueezerCommonException.emptyOutputFilePath();
+            throw ImageSqueezerCommonException_1.default.emptyOutputFilePath();
         }
     }
     handleOutputFilePath() {
@@ -111,16 +113,14 @@ class ImageSqueezerCommon {
         }
     }
     generateTemporaryOutputFilePath() {
+        const filename = path_1.default.basename(this.outputFilePath);
+        const splittedFilename = filename.split('.');
         const FILE_NAME = 0;
         const FILE_NAME_EXT = 1;
-        let filename = path_1.default.basename(this.outputFilePath);
-        let splittedFilename = filename.split('.');
-        let newFilename = splittedFilename[FILE_NAME] +
-            '-tmp-' +
-            this.subClassType +
-            '.' +
-            splittedFilename[FILE_NAME_EXT];
-        let newBasename = this.escapeShellArg(this.outputFilePath.replace(filename, newFilename));
+        const newFilename = (splittedFilename[FILE_NAME] +
+            '-tmp-' + this.subClassType + '.' +
+            splittedFilename[FILE_NAME_EXT]);
+        const newBasename = this.escapeShellArg(this.outputFilePath.replace(filename, newFilename));
         return newBasename + this.renameCommandWithCompatibilityChecking(newBasename);
     }
     renameCommandWithCompatibilityChecking(newBasename) {
@@ -140,10 +140,14 @@ class ImageSqueezerCommon {
         return `'${arg.replace(/'/g, `'\\''`)}'`;
     }
     /**
-     * This is an abstract or no-op class method.
-     * The subclass is expected to override this method.
+     * [HOOK METHOD]
+     *
+     * This is an abstract or no-op (no operation) class method.
+     * The subclass of this class is expected to override this method.
      */
-    command() { return ''; }
+    command() {
+        return '';
+    }
     compress() {
         return this.executeChildProcess();
     }
@@ -151,6 +155,8 @@ class ImageSqueezerCommon {
         if (!this.isExecuteChildProcess) {
             return Promise.reject(ImageSqueezerCommon.DISABLED_CHILD_PROC_MSG);
         }
+        // Since we use the standard "child_process" package implementation
+        // we implemented also a standard promise in order to catch the response of the process. 
         return new Promise((resolve, reject) => {
             child_process_1.default.exec(this.commandStatement, (error) => {
                 (error ? reject(error) : resolve(true));
@@ -158,9 +164,9 @@ class ImageSqueezerCommon {
         });
     }
 }
+exports.default = ImageSqueezerCommon;
 ImageSqueezerCommon.WINDOWS_OS = 'win32';
 ImageSqueezerCommon.LINUX_OS = 'linux';
 ImageSqueezerCommon.UNIX_OS = 'freebsd';
 ImageSqueezerCommon.MACOSX_OS = 'darwin';
 ImageSqueezerCommon.DISABLED_CHILD_PROC_MSG = 'The Child Process Execution was disabled.';
-exports.ImageSqueezerCommon = ImageSqueezerCommon;

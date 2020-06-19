@@ -1,4 +1,4 @@
-import { ExtensionMimeTypeInterface } from './ExtensionMimeTypeInterface';
+import ExtensionMimeTypeInterface from './ExtensionMimeTypeInterface';
 /**
  * File Format Resolver Class.
  *
@@ -7,7 +7,7 @@ import { ExtensionMimeTypeInterface } from './ExtensionMimeTypeInterface';
  *
  * @author Joshua Clifford Reyes <reyesjoshuaclifford@gmail.com>
  */
-export declare class FileFormatResolver {
+export default class FileFormatResolver {
     private allowedExtensionMimeType;
     private sourceFilePath;
     private fileNameExtension;

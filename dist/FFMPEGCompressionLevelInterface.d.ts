@@ -3,7 +3,7 @@
  *
  * @author Joshua Clifford Reyes <reyesjoshuaclifford@gmail.com>
  */
-export interface FFMPEGCompressionLevelInterface {
+export default interface FFMPEGCompressionLevelInterface {
     jpeg: string;
     png: string;
 }

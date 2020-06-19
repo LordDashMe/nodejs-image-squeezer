@@ -23,4 +23,4 @@ class OperatingSystemException extends Error {
             'Please use only WIN, Mac OS X, UNIX or Linux to use this package.');
     }
 }
-exports.OperatingSystemException = OperatingSystemException;
+exports.default = OperatingSystemException;
