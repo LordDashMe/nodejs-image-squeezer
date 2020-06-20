@@ -1,6 +1,6 @@
 {
   "name": "nodejs-image-squeezer",
-  "version": "1.2.15",
+  "version": "1.2.16",
   "description": "A simple npm package for image compression powered by FFMPEG.",
   "main": "dist/ImageSqueezer.js",
   "types": "dist/ImageSqueezer.d.ts",
@@ -69,7 +69,7 @@
       "**/dist/*.min.js"
     ]
   },
-  "publishConfig": { 
-    "registry": "https://npm.pkg.github.com/@lorddashme" 
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/@lorddashme"
   }
 }
