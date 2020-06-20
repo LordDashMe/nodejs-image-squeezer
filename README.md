@@ -8,7 +8,7 @@ A simple npm package for image compression powered by FFMPEG.
 
 - Node.js **8.x.x** up to **latest**.
 
-- Operating System: Windows, Linux.
+- Operating System: Windows or Linux.
 
 - FFMPEG Binaries or Executable File:
 
@@ -24,67 +24,27 @@ A simple npm package for image compression powered by FFMPEG.
 
   - ImageMagick:
 
-    - To use the "ProressiveJPEG" class this require the ImageMagick package. To get the latest version [ImageMagick Download Link](https://imagemagick.org/script/download.php)
+    - To use the "ProressiveJPEG" class this require the ImageMagick package.
+
+    - To get the latest version [ImageMagick Download Link](https://imagemagick.org/script/download.php)
 
 ## Install
 
-### via NPM
+### NPM
 
-- Use the command below to install the package via npm:
+- Use command ```npm install nodejs-image-squeezer --save```.
 
-```txt
-npm install nodejs-image-squeezer --save
-```
+### Github Package
+
+- Use command ```npm install @lorddashme/nodejs-image-squeezer```.
+
+  - Currently Github only support scoped npm packages, see: [Publishing a package](https://help.github.com/en/packages/using-github-packages-with-your-projects-ecosystem/configuring-npm-for-use-with-github-packages#publishing-a-package)
 
 ## Usage
 
 ### FFMPEG
 
-- Below are the simple implementation using **TypeScript**:
-
-```ts
-
-// Import the main class of the NodeJS Image Squeezer.
-import ImageSqueezer from 'nodejs-image-squeezer';
-
-// Initialize the main class.
-const imgSqueezer = new ImageSqueezer.FFMPEGComppresion();
-
-// Load the necessary requirements and validate
-// if the package fit for the current environment.
-imgSqueezer.load();
-
-// Set the default binaries file.
-imgSqueezer.setBin('/path/to/ffmpeg');
-
-// Provide the source file path of the desire image
-// that will be compress later on.
-imgSqueezer.setSourceFilePath('/path/source-filename');
-
-// Provide the output file path of the compressed image.
-imgSqueezer.setOutputFilePath('/path/output-filename');
-
-// (Optional) This will allow output file path as empty
-// and will use the source file path as the output file path.
-imgSqueezer.allowEmptyOutputFilePath();
-
-// (Optional) To adjust the compression level.
-// COMPRESSION_LEVEL_LOW = 30%
-// COMPRESSION_LEVEL_NORMAL = 70%
-// (Default) COMPRESSION_LEVEL_HIGH = 100%
-imgSqueezer.setCompressionLevel(ImageSqueezer.FFMPEGComppresion.COMPRESSION_LEVEL_NORMAL);
-
-// Prepare all necessary commands before executing
-// the compression process.
-imgSqueezer.build();
-
-// Execute the image compression.
-// Please take note this is an async method.
-// return a Promise<boolean>.
-imgSqueezer.compress();
-```
-
-- Basic implementation using Vanilla JavaScript:
+- Basic implementation using Vanilla/Common JavaScript:
 
 ```js
 
@@ -126,11 +86,8 @@ imgSqueezer.build();
 // Please take note this is an async method.
 // return a Promise<boolean>.
 imgSqueezer.compress();
+
 ```
-
-### JPEG Progressive
-
-- **Note:** This function will only work for JPEG format.
 
 - Below are the simple implementation using **TypeScript**:
 
@@ -138,26 +95,25 @@ imgSqueezer.compress();
 
 import ImageSqueezer from 'nodejs-image-squeezer';
 
-const imgSqueezer = new ImageSqueezer.ProgressiveJPEG();
+const imgSqueezer = new ImageSqueezer.FFMPEGComppresion();
 
 imgSqueezer.load();
-imgSqueezer.setBin('/path/to/convert');
+
+imgSqueezer.setBin('/path/to/ffmpeg');
 imgSqueezer.setSourceFilePath('/path/source-filename');
 imgSqueezer.setOutputFilePath('/path/output-filename');
-
-// (Optional) This will allow output file path as empty
-// and will use the source file path as the output file path.
 imgSqueezer.allowEmptyOutputFilePath();
-
+imgSqueezer.setCompressionLevel(ImageSqueezer.FFMPEGComppresion.COMPRESSION_LEVEL_NORMAL);
 imgSqueezer.build();
-
-// Execute the jpeg progressive optimization.
-// Please take note this is an async method.
-// return a Promise<boolean>.
 imgSqueezer.compress();
+
 ```
 
-- Basic implementation without using superset libraries for JavaScript (using a pure node.js syntax):
+### JPEG Progressive
+
+- **Note:** This function will only work for JPEG format.
+
+- Basic implementation without using superset libraries for Vanilla/Common JavaScript:
 
 ```js
 
@@ -180,6 +136,25 @@ imgSqueezer.build();
 // Please take note this is an async method.
 // return a Promise<boolean>.
 imgSqueezer.compress();
+
+```
+
+- Below are the simple implementation using **TypeScript**:
+
+```ts
+
+import ImageSqueezer from 'nodejs-image-squeezer';
+
+const imgSqueezer = new ImageSqueezer.ProgressiveJPEG();
+
+imgSqueezer.load();
+imgSqueezer.setBin('/path/to/convert');
+imgSqueezer.setSourceFilePath('/path/source-filename');
+imgSqueezer.setOutputFilePath('/path/output-filename');
+imgSqueezer.allowEmptyOutputFilePath();
+imgSqueezer.build();
+imgSqueezer.compress();
+
 ```
 
 ## License

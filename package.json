@@ -19,9 +19,9 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/lorddashme/nodejs-image-squeezer.git"
+    "url": "git+https://github.com/lorddashme/nodejs-image-squeezer.git"
   },
-  "homepage": "https://github.com/lorddashme/nodejs-image-squeezer",
+  "homepage": "https://github.com/lorddashme/nodejs-image-squeezer#readme",
   "devDependencies": {
     "@babel/cli": "^7.4.4",
     "@babel/core": "^7.4.5",
@@ -70,6 +70,6 @@
     ]
   },
   "publishConfig": { 
-    "registry": "https://npm.pkg.github.com/" 
+    "registry": "https://npm.pkg.github.com/@lorddashme" 
   }
 }
