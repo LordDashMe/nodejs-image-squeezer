@@ -45,7 +45,7 @@
     "@types/image-size": "^0.7.0",
     "@types/node": "^12.0.2",
     "file-type": "^16.5.4",
-    "image-size": "^0.7.4",
+    "image-size": "npm:image-size-next@1.2.2",
     "read-chunk": "^3.2.0"
   },
   "config": {
